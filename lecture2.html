@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>التحليل الكيميائي - الباب الثاني - المحاضرة الثانية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07162b;--bg2:#0d2a4a;--teal:#19d3bd;--amber:#ffc857;--coral:#ff6b6b;--violet:#9b8cff;--blue:#4cc3ff;--green:#4ade80;--ink:#eaf4ff;--mut:#9fb6d0;--ac:var(--teal)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;background:#04101f;font-family:'Cairo','Segoe UI',Tahoma,sans-serif;color:var(--ink);-webkit-tap-highlight-color:transparent;user-select:none}
+.stage{position:absolute;left:50%;top:50%;width:1280px;height:720px;transform:translate(-50%,-50%);background:radial-gradient(1200px 700px at 85% 0%,#12406b 0%,transparent 60%),radial-gradient(900px 600px at 0% 100%,#0f3b4e 0%,transparent 60%),linear-gradient(160deg,var(--bg),var(--bg2));overflow:hidden;border-radius:6px}
+.blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.28;pointer-events:none;animation:float 14s ease-in-out infinite}
+.b1{width:380px;height:380px;background:var(--teal);left:-120px;top:-100px}
+.b2{width:320px;height:320px;background:var(--violet);right:-100px;bottom:-80px;animation-delay:-5s}
+.b3{width:220px;height:220px;background:var(--amber);right:35%;top:-90px;animation-delay:-9s;opacity:.18}
+@keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,40px)}}
+.dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:34px 34px;pointer-events:none}
+/* slides */
+.slide{position:absolute;inset:0;padding:46px 64px 58px;display:none;flex-direction:column}
+.slide.active{display:flex}
+.slide h1{font-size:60px;font-weight:900;line-height:1.35}
+.sh{display:flex;align-items:center;gap:18px;margin-bottom:22px}
+.sh .n{min-width:58px;height:58px;border-radius:18px;background:var(--ac);color:#06202a;font-weight:900;font-size:30px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.sh h2{font-size:42px;font-weight:800;line-height:1.3}
+.sh .bar{flex:1;height:5px;border-radius:5px;background:linear-gradient(90deg,transparent,var(--ac));opacity:.7}
+.body{flex:1;display:flex;flex-direction:column;gap:16px;min-height:0}
+.glass{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:18px 24px;backdrop-filter:blur(6px);box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-top:6px solid var(--ac);border-radius:20px;padding:16px 22px;box-shadow:0 10px 26px rgba(0,0,0,.25);font-size:25px;line-height:1.6}
+.card h3{font-size:30px;font-weight:800;margin-bottom:6px;color:var(--ac)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.t26{font-size:26px;line-height:1.7}.t30{font-size:30px;line-height:1.7}.t22{font-size:22px;line-height:1.6}
+.mut{color:var(--mut)}
+.hl{color:var(--amber);font-weight:800}
+.tg{color:var(--teal);font-weight:800}
+.cr{color:var(--coral);font-weight:800}
+.gr{color:var(--green);font-weight:800}
+.vi{color:var(--violet);font-weight:800}
+.f{direction:ltr;unicode-bidi:isolate;display:inline-block;font-family:'Segoe UI','DejaVu Sans',Arial,sans-serif;font-weight:700;color:#bff3ff;background:rgba(76,195,255,.14);padding:0 10px;border-radius:9px;line-height:1.45}
+.f sub,.eq sub{font-size:.62em;vertical-align:-.28em}.f sup,.eq sup{font-size:.62em;vertical-align:.55em}
+.eq{direction:ltr;text-align:center;font-family:'Segoe UI','DejaVu Sans',Arial,sans-serif;font-weight:700;font-size:28px;color:#eafcff;background:rgba(25,211,189,.13);border:2px dashed rgba(25,211,189,.6);border-radius:16px;padding:8px 18px;line-height:1.6}
+.eq.sm{font-size:24px}
+.tag{display:inline-block;background:var(--ac);color:#06202a;font-weight:800;border-radius:12px;padding:0 14px;font-size:22px}
+.st{visibility:hidden;opacity:0}
+.st.on{visibility:visible;opacity:1}
+.lbl{font-size:20px;font-weight:800;color:#06202a;background:var(--ac);display:inline-block;padding:0 14px;border-radius:12px;margin-bottom:6px}
+.rule{border-top-color:var(--amber)}.rule h3,.rule .lbl{color:var(--amber)}.rule .lbl{color:#2b2000;background:var(--amber)}
+.why{border-top-color:var(--violet)}.why h3{color:var(--violet)}
+.warn{border-top-color:var(--coral)}.warn h3{color:var(--coral)}
+.okc{border-top-color:var(--green)}.okc h3{color:var(--green)}
+ul.dots-l{list-style:none}
+ul.dots-l li{position:relative;padding-right:30px;margin:6px 0}
+ul.dots-l li::before{content:"";position:absolute;right:0;top:.62em;width:14px;height:14px;border-radius:50%;background:var(--ac)}
+/* tables */
+.tb{width:100%;border-collapse:separate;border-spacing:0 8px;font-size:24px}
+.tb th{background:var(--ac);color:#06202a;padding:8px 14px;font-weight:800}
+.tb th:first-child{border-radius:0 14px 14px 0}.tb th:last-child{border-radius:14px 0 0 14px}
+.tb td{background:rgba(255,255,255,.08);padding:8px 14px;text-align:center;line-height:1.5}
+.tb td:first-child{border-radius:0 14px 14px 0}.tb td:last-child{border-radius:14px 0 0 14px}
+.tb tr.st.on td{animation:rowIn .6s both}
+.tb td.r{text-align:right}
+@keyframes rowIn{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:none}}
+/* HUD */
+.hud{position:absolute;left:0;right:0;bottom:0;height:46px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;font-size:17px;color:var(--mut);z-index:20;pointer-events:none}
+.hud .btns{display:flex;gap:8px;pointer-events:auto}
+.hud button{font-family:inherit;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:var(--ink);border-radius:12px;padding:5px 14px;min-height:34px;font-size:16px;cursor:pointer;white-space:nowrap}
+.hud button:hover{background:rgba(255,255,255,.22)}
+.prog{position:absolute;top:0;right:0;height:6px;width:0;background:linear-gradient(270deg,var(--teal),var(--amber));z-index:30;transition:width .5s}
+.hint{position:absolute;bottom:50px;left:30px;font-size:17px;color:var(--amber);z-index:25;opacity:.9;animation:pulseH 1.8s infinite;pointer-events:none}
+@keyframes pulseH{0%,100%{opacity:.35}50%{opacity:1}}
+/* menu */
+.menu{position:absolute;inset:0;background:rgba(4,12,24,.95);z-index:50;display:none;padding:40px 60px;overflow:auto}
+.menu.show{display:block}
+.menu h3{font-size:36px;margin-bottom:20px}
+.menu .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.menu button{font-family:inherit;text-align:right;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:var(--ink);border-radius:14px;padding:10px 16px;font-size:20px;cursor:pointer}
+.menu button:hover{background:var(--teal);color:#06202a}
+.menu button b{color:var(--amber);margin-left:8px}
+/* cover */
+.cover{justify-content:center;align-items:center;text-align:center}
+.cover .chip{display:inline-block;background:var(--amber);color:#2b2000;font-weight:900;font-size:26px;padding:2px 30px;border-radius:30px}
+.cover h1{font-size:110px;margin:18px 0 0;background:linear-gradient(90deg,#fff,var(--teal));-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.3}
+.cover .s1{font-size:34px;color:#cfe9ff;margin-top:6px}
+.cover .s2{font-size:26px;color:var(--amber);margin-top:20px}
+.cover .go{margin-top:34px;font-size:24px;color:#06202a;background:var(--teal);display:inline-block;padding:6px 36px;border-radius:40px;font-weight:800}
+/* agenda */
+.ag{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.ag .it{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:12px 16px;font-size:24px;font-weight:700;display:flex;align-items:center;gap:12px;cursor:pointer;transition:.2s}
+.ag .it:hover{transform:translateY(-4px);background:rgba(25,211,189,.25)}
+.ag .it i{font-style:normal;min-width:42px;height:42px;border-radius:14px;background:var(--teal);color:#06202a;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:22px}
+/* tree */
+.tree{display:flex;flex-direction:column;align-items:center;gap:10px}
+.nd{background:var(--ac);color:#06202a;font-weight:800;border-radius:16px;padding:8px 22px;font-size:26px;text-align:center}
+.nd.g{background:rgba(255,255,255,.1);color:var(--ink);border:2px solid rgba(255,255,255,.25);font-size:22px;font-weight:600}
+/* flip cards */
+.flipc{perspective:1000px;cursor:pointer;height:200px}
+.flipc .flip-inner{position:relative;width:100%;height:100%;transition:transform .7s;transform-style:preserve-3d}
+.flipc.flipped .flip-inner{transform:rotateY(180deg)}
+.flipc .fa,.flipc .fb{position:absolute;inset:0;backface-visibility:hidden;border-radius:20px;padding:14px 20px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:23px;line-height:1.5;font-weight:700;overflow:auto;overflow-wrap:anywhere;scrollbar-width:thin}
+.flipc .fa{background:rgba(155,140,255,.18);border:2px solid var(--violet);flex-direction:column;gap:4px}
+.flipc .fb{background:rgba(74,222,128,.16);border:2px solid var(--green);transform:rotateY(180deg)}
+.flipc .fa small{display:block;font-size:16px;color:var(--amber);font-weight:600;margin-top:6px}
+/* lab */
+.labwrap{display:grid;grid-template-columns:430px 1fr;gap:22px;flex:1;min-height:0}
+.labsvg{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:24px;padding:6px}
+.labsvg svg{width:100%;height:100%;display:block}
+.caps{display:flex;flex-direction:column;gap:10px;justify-content:flex-start}
+.caps .c{font-size:24px;line-height:1.55;background:rgba(255,255,255,.08);border-right:6px solid var(--ac);border-radius:14px;padding:8px 16px}
+.liq,.cloud,.solid,.ppt,.paperR{transition:fill 1.1s,opacity 1.1s}
+.bub circle{animation:rise 2.2s infinite ease-in}
+@keyframes rise{0%{transform:translateY(0);opacity:0}15%{opacity:.9}100%{transform:translateY(-95px);opacity:0}}
+.gasg circle{animation:rise2 2.4s infinite linear}
+@keyframes rise2{0%{transform:translateY(0);opacity:0}20%{opacity:.7}100%{transform:translateY(-40px);opacity:0}}
+.dropc.go{animation:fall 1.1s ease-in forwards}
+@keyframes fall{0%{transform:translateY(0);opacity:1}85%{opacity:1}100%{transform:translateY(95px);opacity:0}}
+.flame{transform-origin:50% 100%;animation:flick .25s infinite alternate}
+@keyframes flick{from{transform:scale(1,1)}to{transform:scale(.93,1.12)}}
+/* graph */
+.draw{fill:none;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:420;stroke-dashoffset:420;transition:stroke-dashoffset 1.6s ease}
+.draw.go{stroke-dashoffset:0}
+/* redox */
+.rx{display:flex;align-items:center;justify-content:space-between;direction:ltr;gap:10px;margin:6px 0}
+.rbox{background:rgba(255,255,255,.08);border:2px solid var(--ac);border-radius:20px;padding:12px 20px;text-align:center;font-size:24px;min-width:330px}
+.rbox b{display:block;font-size:30px;color:var(--ac)}
+.eflow{position:relative;flex:1;height:70px}
+.eflow i{position:absolute;top:22px;left:0;width:26px;height:26px;border-radius:50%;background:var(--amber);color:#2b2000;font-style:normal;font-weight:900;font-size:16px;display:flex;align-items:center;justify-content:center;opacity:0}
+.eflow.go i{animation:efly 2s infinite}
+.eflow.go i:nth-child(2){animation-delay:.4s}.eflow.go i:nth-child(3){animation-delay:.8s}
+@keyframes efly{0%{left:0;opacity:0}15%{opacity:1}85%{opacity:1}100%{left:calc(100% - 26px);opacity:0}}
+/* quiz */
+.qh{display:flex;justify-content:space-between;font-size:24px;color:var(--amber);font-weight:800}
+.qt{font-size:34px;font-weight:800;line-height:1.55;margin:8px 0 12px}
+.qt .f{font-size:28px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.opt{font-family:inherit;text-align:right;font-size:26px;font-weight:700;color:var(--ink);background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.2);border-radius:18px;padding:10px 18px;cursor:pointer;transition:.2s;line-height:1.5}
+.opt:hover{background:rgba(76,195,255,.22);transform:translateY(-3px)}
+.opt.right{background:rgba(74,222,128,.28);border-color:var(--green)}
+.opt.wrong{background:rgba(255,107,107,.28);border-color:var(--coral)}
+.opt.dis{pointer-events:none}
+.expl{margin-top:12px;font-size:24px;line-height:1.6;background:rgba(74,222,128,.12);border:2px solid rgba(74,222,128,.5);border-radius:18px;padding:10px 18px;display:none}
+.ring{width:240px;height:240px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:62px;font-weight:900;margin:0 auto;background:conic-gradient(var(--teal) calc(var(--p)*1%),rgba(255,255,255,.12) 0)}
+.ring span{width:190px;height:190px;border-radius:50%;background:var(--bg);display:flex;align-items:center;justify-content:center}
+.big{font-size:44px;font-weight:900}
+.center{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.meter{height:34px;border-radius:20px;background:linear-gradient(90deg,#ff6b6b,#ffc857 50%,#4ade80);position:relative;direction:rtl}
+
+/* ===== built-in animations (no animate.css needed) ===== */
+.animate__animated{animation-duration:.6s;animation-fill-mode:both}
+.animate__fadeIn{animation-name:aFI}.animate__fadeInUp{animation-name:aFU}.animate__fadeInDown{animation-name:aFD}.animate__fadeInLeft{animation-name:aFL}.animate__fadeInRight{animation-name:aFR}.animate__zoomIn{animation-name:aZI}.animate__bounceIn{animation-name:aBI}.animate__tada{animation-name:aTa}.animate__shakeX{animation-name:aSX}.animate__flipInX{animation-name:aFX}.animate__flipInY{animation-name:aFY}.animate__pulse{animation-name:aPu}.animate__headShake{animation-name:aSX}.animate__jackInTheBox{animation-name:aJB}
+@keyframes aFI{from{opacity:0}}@keyframes aFU{from{opacity:0;transform:translateY(30px)}}@keyframes aFD{from{opacity:0;transform:translateY(-30px)}}@keyframes aFL{from{opacity:0;transform:translateX(-40px)}}@keyframes aFR{from{opacity:0;transform:translateX(40px)}}@keyframes aZI{from{opacity:0;transform:scale(.6)}}@keyframes aBI{0%{opacity:0;transform:scale(.7)}60%{opacity:1;transform:scale(1.08)}100%{transform:scale(1)}}@keyframes aTa{30%{transform:scale(1.06) rotate(-3deg)}60%{transform:scale(1.06) rotate(3deg)}}@keyframes aSX{20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}@keyframes aFX{from{opacity:0;transform:rotateX(60deg)}}@keyframes aFY{from{opacity:0;transform:rotateY(60deg)}}@keyframes aPu{50%{transform:scale(1.06)}}@keyframes aJB{from{opacity:0;transform:scale(.3) rotate(-10deg)}}
+/* lighter on weak devices */
+.blob{animation:none;filter:blur(40px)}.glass{backdrop-filter:none}
+/* always-visible result */
+.result{flex-shrink:0;display:flex;align-items:center;gap:16px;background:rgba(74,222,128,.14);border:2px solid var(--green);border-radius:18px;padding:8px 20px;font-size:25px;font-weight:700;line-height:1.5;margin-top:10px}
+.result b{background:var(--green);color:#06202a;border-radius:12px;padding:0 16px;font-size:22px;flex-shrink:0}
+.caps .c{font-size:22px;padding:6px 14px}
+/* ===== light theme (default) ===== */
+body.light{--bg:#f4f8fc;--bg2:#e8f1f9;--teal:#0d9488;--amber:#b45309;--coral:#dc2626;--violet:#6d4cf0;--blue:#0369a1;--green:#15803d;--ink:#10263d;--mut:#586e86}
+body.light .stage{background:linear-gradient(160deg,#fff,#eef5fb);box-shadow:0 10px 40px rgba(15,40,70,.18)}
+body.light .blob,body.light .dots{display:none}
+body.light .glass,body.light .card,body.light .caps .c,body.light .ag .it,body.light .tb td,body.light .rbox,body.light .opt,body.light .hud button,body.light .menu button{background:#fff;box-shadow:0 2px 8px rgba(15,40,70,.08)}
+body.light .glass,body.light .ag .it,body.light .rbox,body.light .opt,body.light .hud button,body.light .menu button{border-color:#d5e1ee}
+body.light .card{border-color:#d5e1ee;border-top-color:var(--ac)}
+body.light .rule{border-top-color:var(--amber)}body.light .why{border-top-color:var(--violet)}body.light .warn{border-top-color:var(--coral)}body.light .okc{border-top-color:var(--green)}
+body.light .sh .n,body.light .tb th,body.light .tag,body.light .lbl,body.light .nd,body.light .cover .go,body.light .cover .chip,body.light .rule .lbl,body.light .result b{color:#fff!important}
+body.light .cover .chip{background:var(--amber)}
+body.light .cover h1{background:linear-gradient(90deg,#10263d,var(--teal));-webkit-background-clip:text;background-clip:text}
+body.light .cover .s1{color:var(--ink)}
+body.light .f{color:#0b4f75;background:rgba(3,105,161,.09)}
+body.light .eq{color:#0b3b3a;background:rgba(13,148,136,.08);border-color:rgba(13,148,136,.5)}
+body.light .opt:hover{background:#e0f2fe}
+body.light .opt.right{background:#dcfce7;border-color:var(--green)}body.light .opt.wrong{background:#fee2e2;border-color:var(--coral)}
+body.light .menu{background:rgba(255,255,255,.98)}body.light .menu button:hover{background:var(--teal);color:#fff}
+body.light .ring{background:conic-gradient(var(--teal) calc(var(--p)*1%),#d5e1ee 0)}
+body.light .result{background:#ecfdf5}
+body.light .labsvg{background:#0f2740;border:none}
+
+/* results ring fix */
+@property --p{syntax:'<number>';inherits:false;initial-value:0}
+.ring{width:260px;height:260px;transition:--p 1.4s ease;box-shadow:0 10px 30px rgba(0,0,0,.18)}
+.ring span{width:214px;height:214px;direction:ltr;white-space:nowrap;font-size:54px;letter-spacing:1px;color:var(--teal)}
+body.light .ring span{background:#fff;box-shadow:inset 0 2px 10px rgba(15,40,70,.12)}
+#resMsg{font-size:34px;line-height:1.5;max-width:1000px}
+.slide.center:not(.active){display:none}
+
+/* ===== readability and flip-card fixes ===== */
+.flipc:focus-visible{outline:3px solid var(--amber);outline-offset:4px}
+.flipc .fa small{flex:none}
+.quiz-slide .fit{transform:none!important;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;padding-bottom:22px}
+.quiz-slide .fit>*{flex-shrink:0}
+.quiz-slide .body>*{flex-shrink:0}
+.quiz-slide .qt{max-width:100%;line-height:1.58;overflow-wrap:anywhere;word-break:normal}
+.quiz-slide .opts{align-items:stretch;gap:14px}
+.quiz-slide .opt{display:flex;align-items:center;min-width:0;min-height:68px;padding:13px 18px;font-size:24px;line-height:1.6;overflow-wrap:anywhere;word-break:normal}
+.quiz-slide .expl{margin-bottom:22px;overflow-wrap:anywhere}
+.slide[data-title^="سؤال سريع"] .fit{overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;padding-bottom:22px}
+.slide[data-title^="سؤال سريع"] .opt{min-width:0;overflow-wrap:anywhere}
+@media (max-width:800px){
+ .quiz-slide .qh{font-size:20px;gap:12px;flex-wrap:wrap}
+ .quiz-slide .opts{grid-template-columns:1fr}
+ .quiz-slide .opt{font-size:23px}
+}
+
+/* ===== polish + fit ===== */
+.fit{display:flex;flex-direction:column;flex:1;min-height:0;transform-origin:top center}
+.slide{padding:38px 56px 60px}
+.prog{height:5px}
+#rot{display:none;position:fixed;top:6px;left:50%;transform:translateX(-50%);z-index:99;background:#b45309;color:#fff;padding:2px 14px;border-radius:20px;font-size:14px}
+@media (orientation:portrait){#rot{display:block}}
+body.light{--teal:#0f766e;--coral:#be123c;--violet:#4f46e5}
+body.light .slide{--ac:var(--teal)!important}
+body.light .stage{background:radial-gradient(900px 500px at 100% 0%,rgba(15,118,110,.10),transparent 60%),radial-gradient(700px 400px at 0% 100%,rgba(79,70,229,.07),transparent 60%),#f8fbfe}
+body.light .sh h2{color:#0b2540}
+body.light .sh .bar{background:linear-gradient(270deg,var(--ac),transparent);height:4px}
+body.light .sh .n{box-shadow:0 6px 16px rgba(15,118,110,.3)}
+body.light .card{box-shadow:0 6px 18px rgba(15,40,70,.09)}
+body.light .tb td{border-top:1px solid #e3ecf5;border-bottom:1px solid #e3ecf5}
+body.light .hud{background:linear-gradient(transparent,#f8fbfe 60%)}
+body.light .cover h1{-webkit-text-fill-color:transparent}
+
+
+/* ===== final contrast + visual polish ===== */
+body.light .nd.g{
+  background:linear-gradient(145deg,#ffffff,#f4f8fc);
+  color:#10263d!important;
+  border-color:#cbd8e6;
+  box-shadow:0 5px 14px rgba(15,40,70,.08);
+}
+body.light .nd.g .mut{color:#53677f!important}
+body.light .nd.g .f{color:#0b4f75!important;background:rgba(3,105,161,.09)}
+body.light .flipc .fa{
+  color:#17233b;
+  background:linear-gradient(145deg,#f5f2ff,#ffffff);
+  border-color:#b8a7ff;
+}
+body.light .flipc .fb{
+  color:#123b2a;
+  background:linear-gradient(145deg,#ecfdf3,#ffffff);
+  border-color:#78c995;
+}
+body.light .flipc .fa small{color:#92400e}
+body.light .expl{color:#183b2b;background:#f0fdf4;border-color:#86d5a0}
+body.light .expl .gr{color:#166534}
+body.light .expl .cr{color:#b91c1c}
+body.light .qh,body.light .hint{color:#92400e}
+#bPDF{background:rgba(25,211,189,.16)!important;border-color:rgba(25,211,189,.55)!important;font-weight:800}
+#bPDF:disabled{opacity:.7;cursor:wait}
+body.light #bPDF{background:#0f766e!important;border-color:#0f766e!important;color:#fff!important}
+
+/* Consistent keyboard focus and restrained interaction feedback. */
+.hud button:focus-visible,.menu button:focus-visible,.opt:focus-visible,.flipc:focus-visible{
+  outline:3px solid var(--amber);outline-offset:3px;
+}
+@media (hover:hover){
+  .hud button{transition:background .18s ease,border-color .18s ease,transform .18s ease}
+  .hud button:hover{transform:translateY(-1px)}
+  .card{transition:box-shadow .18s ease,border-color .18s ease}
+  .card:hover{box-shadow:0 9px 22px rgba(15,40,70,.13)}
+  .flipc{transition:filter .18s ease}
+  .flipc:hover{filter:brightness(1.035)}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+
+.quiz-slide .opt .ot{display:block;min-width:0;flex:1;overflow-wrap:anywhere}
+/* ===== NEW: challenge, quick review & mind map ===== */
+
+/* Challenge */
+.challenge-lead{
+  text-align:center;
+  font-size:23px;
+  color:var(--mut);
+  font-weight:700;
+}
+.challenge-question{
+  background:linear-gradient(120deg,rgba(155,140,255,.18),rgba(25,211,189,.12));
+  border:2px solid rgba(155,140,255,.55);
+  border-radius:22px;
+  padding:20px 26px;
+  font-size:29px;
+  line-height:1.65;
+  font-weight:800;
+  text-align:center;
+  box-shadow:0 12px 28px rgba(0,0,0,.16);
+}
+.challenge-options{
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+.challenge-options .opt{
+  min-height:76px;
+  border-radius:18px;
+  font-size:23px;
+  padding:12px 18px;
+}
+.challenge-note{
+  text-align:center;
+  color:var(--amber);
+  font-size:19px;
+  font-weight:800;
+}
+body.light .challenge-question{
+  background:linear-gradient(120deg,#f3efff,#e9fbf8);
+  border-color:#a99ae8;
+  color:#172c46;
+}
+
+/* Quick review */
+.review-layout{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  flex:1;
+  min-height:0;
+}
+.review-panel{
+  background:rgba(255,255,255,.065);
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:22px;
+  padding:16px 19px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  min-height:0;
+  box-shadow:0 10px 28px rgba(0,0,0,.16);
+}
+.review-panel h3{
+  font-size:27px;
+  font-weight:900;
+  color:var(--ac);
+  padding-bottom:8px;
+  border-bottom:2px solid rgba(255,255,255,.12);
+}
+.review-list{
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+}
+.review-item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:9px 12px;
+  background:rgba(255,255,255,.07);
+  border-radius:13px;
+  border-right:4px solid var(--item-ac,var(--teal));
+  font-size:19px;
+  line-height:1.5;
+}
+.review-name{
+  font-weight:800;
+  flex:1;
+}
+.review-formula{
+  direction:ltr;
+  display:inline-block;
+  color:#bff3ff;
+  font-weight:900;
+}
+.review-pill{
+  flex-shrink:0;
+  padding:3px 11px;
+  border-radius:20px;
+  font-size:16px;
+  font-weight:900;
+  white-space:nowrap;
+  background:rgba(255,255,255,.12);
+}
+.review-pill.black{background:#20242a;color:#fff;border:1px solid #777}
+.review-pill.white{background:#fff;color:#15263b}
+.review-pill.yellow{background:#f5d43e;color:#302500}
+.review-pill.brown{background:#9a4b24;color:#fff}
+.review-pill.green{background:#168553;color:#fff}
+.review-pill.orange{background:#e68b25;color:#fff}
+.review-pill.clear{border:1px solid var(--mut);color:var(--ink)}
+.review-footer{
+  flex-shrink:0;
+  text-align:center;
+  padding:8px 12px;
+  border-radius:14px;
+  background:rgba(255,200,87,.12);
+  color:var(--amber);
+  font-size:18px;
+  font-weight:800;
+}
+body.light .review-panel{
+  background:#fff;
+  border-color:#d9e4ef;
+  box-shadow:0 8px 22px rgba(15,40,70,.07);
+}
+body.light .review-item{
+  background:#f2f6fb;
+  color:#17304a;
+}
+body.light .review-formula{color:#075985}
+body.light .review-pill.clear{color:#17304a}
+body.light .review-panel h3{border-bottom-color:#dce6ef}
+
+/* Mind map */
+.mindmap-body{
+  gap:13px;
+}
+.mindmap-core{
+  align-self:center;
+  min-width:390px;
+  text-align:center;
+  padding:10px 30px;
+  border-radius:18px;
+  background:linear-gradient(120deg,#087d81,#15517d);
+  border:2px solid var(--teal);
+  color:#fff;
+  font-size:27px;
+  font-weight:900;
+  box-shadow:0 8px 24px rgba(0,0,0,.2);
+}
+.mindmap-subtitle{
+  text-align:center;
+  color:var(--mut);
+  font-size:18px;
+  font-weight:700;
+}
+.mindmap-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-template-rows:repeat(2,minmax(0,1fr));
+  gap:13px;
+  flex:1;
+  min-height:0;
+}
+.mindmap-node{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:8px;
+  padding:13px 16px;
+  border-radius:19px;
+  background:rgba(255,255,255,.075);
+  border:1px solid rgba(255,255,255,.15);
+  border-top:5px solid var(--node-ac);
+  box-shadow:0 8px 22px rgba(0,0,0,.14);
+}
+.mindmap-node h3{
+  font-size:23px;
+  font-weight:900;
+  color:var(--node-ac);
+}
+.mindmap-node p{
+  font-size:18px;
+  line-height:1.5;
+  color:var(--ink);
+}
+.mindmap-node p b{
+  color:var(--amber);
+}
+.mindmap-node .f{
+  font-size:17px;
+}
+.mindmap-footer{
+  text-align:center;
+  padding:8px 12px;
+  background:rgba(25,211,189,.11);
+  border:1px solid rgba(25,211,189,.3);
+  border-radius:14px;
+  color:var(--teal);
+  font-size:18px;
+  font-weight:800;
+}
+body.light .mindmap-node{
+  background:#fff;
+  border-color:#d8e3ed;
+  border-top-color:var(--node-ac);
+  box-shadow:0 6px 17px rgba(15,40,70,.07);
+}
+body.light .mindmap-node p{color:#17304a}
+body.light .mindmap-node p b{color:#a45308}
+body.light .mindmap-footer{background:#e9f8f6}
+</style>
+<link rel="stylesheet" href="animate.min.css">
+</head>
+<body>
+<div class="stage" id="stage">
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="dots"></div>
+<div class="prog" id="prog"></div>
+
+<!-- 1 COVER -->
+<section class="slide cover" data-title="الغلاف" style="--ac:var(--teal)">
+ <div class="chip in" data-a="bounceIn">ثالثة ثانوي &nbsp;|&nbsp; الثانوية العامة &nbsp;|&nbsp; الباب الثاني</div>
+ <h1 class="in" data-a="zoomIn">التحليل الكيميائي</h1>
+ <div class="s1 in" data-a="fadeInUp">المحاضرة الثانية: الكبريتيد والنيتريت وملخص مجموعة HCl المخفف</div>
+ <div class="s2 in" data-a="fadeInUp">شرح: Dr.Mohammed</div>
+ <div class="go in" data-a="pulse">اضغط في أي مكان للبدء</div>
+</section>
+
+<section class="slide" data-title="محتوى المحاضرة" style="--ac:var(--amber)">
+ <div class="sh"><div class="n">؟</div><h2>هنذاكر إيه النهاردة؟</h2><div class="bar"></div></div>
+ <div class="body"><div class="ag"><div class="it st" data-a="fadeInRight" data-go="2"><i>١</i>الكبريتيد: التعريف</div><div class="it st" data-a="fadeInUp" data-go="3"><i>٢</i>الكشف الأساسي والتأكيدي</div><div class="it st" data-a="fadeInLeft" data-go="7"><i>٣</i>كبريتيد ولا كبريتيت؟</div><div class="it st" data-a="fadeInRight" data-go="10"><i>٤</i>النيتريت والكشف الأساسي</div><div class="it st" data-a="fadeInUp" data-go="14"><i>٥</i>التجربة التأكيدية للنيتريت</div><div class="it st" data-a="fadeInLeft" data-go="16"><i>٦</i>الأكسدة والاختزال</div><div class="it st" data-a="fadeInRight" data-go="19"><i>٧</i>الملخص والجدول النهائي</div></div>
+ <div class="t22 mut st" data-a="fadeIn" style="text-align:center;margin-top:6px">اضغط على أي بند تروح له علطول، أو كمّل ضغط وامشي خطوة خطوة</div></div>
+</section>
+
+<section class="slide" data-title="الكبريتيد: التعريف" style="--ac:var(--teal)">
+ <div class="sh"><div class="n">١</div><h2>أنيون الكبريتيد <span class="f">S^2-</span></h2><div class="bar"></div></div>
+ <div class="body">
+<div class="glass t30 st" data-a="fadeInUp"><span class="tag">التعريف</span><br>أنيون <span class="hl">ثنائي التكافؤ</span> يشتق من <span class="tg">حمض الهيدروكبريتيك</span> <span class="f">H2S</span>.</div><div class="card why st" data-a="flipInX"><h3>علل: يصلح HCl في الكشف عن أنيون الكبريتيد</h3><div class="t26">لأن حمض <span class="f">HCl</span> <b class="hl">أكثر ثباتًا</b> من حمض الهيدروكبريتيك الذي يشتق منه الكبريتيد، فيطرده على هيئة غاز.</div></div>
+ </div>
+</section>
+
+<section class="slide" data-title="الكشف الأساسي للكبريتيد" style="--ac:var(--coral)">
+ <div class="sh"><div class="n">١</div><h2>التجربة الأساسية للكبريتيد</h2><div class="bar"></div></div>
+ <div class="body">
+<div class="glass t22 st" data-a="fadeInUp">ملح صلب (<span class="f">Na2S</span>) + حمض <span class="f">HCl</span> مخفف، فيتصاعد غاز <span class="f">H2S</span> <b class="hl">عديم اللون كريه الرائحة</b> (رائحة البيض الفاسد)</div><div class="eq sm st" data-a="fadeInUp">Na2S + 2HCl -> 2NaCl + H2S ↑</div><div class="glass t22 st" data-a="fadeInUp">الغاز يسوّد ورقة مبللة بمحلول <b class="hl">أسيتات الرصاص II</b> لتكوّن راسب أسود من <span class="f">PbS</span></div><div class="eq sm st" data-a="fadeInUp">(CH3COO)2Pb + H2S -> 2CH3COOH + PbS ↓ (أسود)</div><div class="glass t22 st" style="text-align:center;" data-a="fadeInUp">بديل أسيتات الرصاص II: <b class="hl">نيترات الرصاص</b> أو <b class="hl">بيكربونات الرصاص</b> (أي محلول فيه <span class="f">Pb^2+</span>)</div>
+ </div>
+</section>
+
+<section class="slide" data-title="رسم: كشف الكبريتيد بـ HCl" style="--ac:var(--coral)">
+ <div class="sh"><div class="n">🧪</div><h2>رسم التجربة الأساسية للكبريتيد</h2><div class="bar"></div></div>
+ <div class="labwrap"><div class="labsvg"><div class="lab" data-lab="h2s" style="height:100%"></div></div>
+  <div class="caps">
+   <div class="c st" data-a="fadeInRight" data-stage="0">ملح كبريتيد الصوديوم الصلب <span class="f">Na2S</span>، وفوق الأنبوبة ورقة مبللة بمحلول <b class="hl">أسيتات الرصاص II</b> (بيضاء)</div>
+   <div class="c st" data-a="fadeInRight" data-stage="1">بنضيف حمض <span class="f">HCl</span> المخفف</div>
+   <div class="c st" data-a="fadeInRight" data-stage="2">بيتصاعد غاز <span class="f">H2S</span> عديم اللون <b class="hl">كريه الرائحة</b> (البيض الفاسد)</div>
+   <div class="c st" data-a="fadeInRight" data-stage="3">الورقة <b class="cr">بتسود</b> لتكوّن <span class="f">PbS</span> الأسود</div>
+   <div class="eq sm st" data-a="fadeInUp">Na2S + 2HCl -> 2NaCl + H2S ↑</div>
+   <div class="eq sm st" data-a="fadeInUp">(CH3COO)2Pb + H2S -> 2CH3COOH + PbS ↓ (أسود)</div>
+  </div></div>
+</section>
+
+<section class="slide" data-title="التأكيدي للكبريتيد" style="--ac:var(--blue)">
+ <div class="sh"><div class="n">١</div><h2>التجربة التأكيدية للكبريتيد</h2><div class="bar"></div></div>
+ <div class="body">
+<div class="glass t26 st" data-a="fadeInUp">محلول الملح + محلول <b class="hl">نترات الفضة</b> <span class="f">AgNO3</span></div><div class="eq st" data-a="fadeInUp">Na2S + 2AgNO3 -> 2NaNO3 + Ag2S ↓ (أسود)</div><div class="big tg st center" data-a="tada">يتكوّن راسب أسود من كبريتيد الفضة</div><div class="glass t22 st" style="text-align:center;" data-a="fadeInUp">بديل نيترات الفضة: <b class="hl">بيكربونات الفضة</b> <span class="f">AgHCO3</span> (أي محلول فيه <span class="f">Ag^+</span>)</div>
+ </div>
+</section>
+
+<section class="slide" data-title="رسم: كبريتيد + نترات الفضة" style="--ac:var(--blue)">
+ <div class="sh"><div class="n">🧪</div><h2>رسم التجربة التأكيدية للكبريتيد</h2><div class="bar"></div></div>
+ <div class="labwrap"><div class="labsvg"><div class="lab" data-lab="ag2s" style="height:100%"></div></div>
+  <div class="caps">
+   <div class="c st" data-a="fadeInRight" data-stage="0">محلول كبريتيد الصوديوم</div>
+   <div class="c st" data-a="fadeInRight" data-stage="1">بنضيف محلول نترات الفضة <span class="f">AgNO3</span></div>
+   <div class="c st" data-a="fadeInRight" data-stage="2">بيتكوّن <b class="cr">راسب أسود</b> من كبريتيد الفضة <span class="f">Ag2S</span> على طول</div>
+   <div class="c st" data-a="fadeInRight" data-stage="3">بنسخّن: الراسب <b class="hl">يفضل أسود</b> (عكس الكبريتيت اللي أبيض ويسود)</div>
+   <div class="eq sm st" data-a="fadeInUp">Na2S + 2AgNO3 -> 2NaNO3 + Ag2S ↓ (أسود)</div>
+  </div></div>
+</section>
+
+<section class="slide" data-title="كبريتيد ولا كبريتيت؟" style="--ac:var(--violet)">
+ <div class="sh"><div class="n">٢</div><h2>كبريتيد ولا كبريتيت؟ مع نترات الفضة</h2><div class="bar"></div></div>
+ <div class="body">
+<table class="tb"><tr><th style="width:20%"></th><th>الكبريتيد <span class="f" style="background:#fff;color:#06202a">S^2-</span></th><th>الكبريتيت <span class="f" style="background:#fff;color:#06202a">SO3^2-</span></th></tr><tr class="st" data-a="fadeInUp"><td><b>الراسب</b></td><td class="r"><span class="f">Ag2S</span> <b class="cr">أسود على طول</b></td><td class="r"><span class="f">Ag2SO3</span> <b class="hl">أبيض</b></td></tr><tr class="st" data-a="fadeInUp"><td><b>بعد التسخين</b></td><td class="r">يفضل أسود</td><td class="r"><b class="cr">يسود</b> لأنه يتحول إلى <span class="f">Ag2S</span></td></tr></table><div class="glass t30 st" style="text-align:center;border-color:var(--amber)" data-a="tada">راسب <b class="hl">أبيض يسود</b> بالتسخين = كبريتيت &nbsp;|&nbsp; راسب <b class="cr">أسود</b> على طول = كبريتيد</div>
+ </div>
+</section>
+
+<section class="slide" data-title="ملاحظات هامة" style="--ac:var(--amber)">
+ <div class="sh"><div class="n">٣</div><h2>ملاحظات هامة على الكبريتيد</h2><div class="bar"></div></div>
+ <div class="body">
+<div class="g2"><div class="card  st" data-a="fadeInRight" style="--ac:var(--teal)"><h3>١</h3><div class="t22">عند ذوبان <span class="f">H2S</span> في الماء يتكون محلول حمض الهيدروكبريتيك</div></div><div class="card  st" data-a="fadeInLeft" style="--ac:var(--coral)"><h3>٢</h3><div class="t22">الكبريتيد هو الأنيون <b class="hl">الوحيد</b> في مجموعة HCl اللي بيتصاعد منه غاز فقط ولا يتكون ماء</div></div><div class="card  st" data-a="fadeInRight" style="--ac:var(--violet)"><h3>٣</h3><div class="t22">أغلب رواسب الكبريتيد <b class="hl">سوداء اللون</b></div></div><div class="card  st" data-a="fadeInLeft" style="--ac:var(--blue)"><h3>٤</h3><div class="t22">للتخلص من أي غاز: بنمرره على محلول أو مادة تتفاعل معه</div></div></div>
+ </div>
+</section>
+
+<section class="slide quiz-slide" data-title="سؤال سريع: حديد وكبريت" style="--ac:var(--amber)">
+ <div class="sh"><div class="n">؟</div><h2>جرب نفسك</h2><div class="bar"></div></div>
+ <div class="body">
+  <div class="qt">لو عندنا التفاعلين: <span class="f">Fe + S —Δ→ A</span> ، ثم <span class="f">A + HCl (مخفف) → B (محلول) + C (غاز)</span> . أي مما يأتي يعبر عن A و B و C؟</div>
+  <div class="opts" role="group" aria-label="اختيارات السؤال" data-mini="2" data-ex="الحديد مع الكبريت بالتسخين بيدّي كبريتيد حديد II (FeS). وFeS مع HCl بيدّي كلوريد حديد II (FeCl2) وغاز كبريتيد الهيدروجين H2S. مفيش SO2 لأنه مفيش أكسجين، ومفيش H2 لأن الغاز الناتج من الكبريتيد هو H2S.">
+   <button class="opt">أ) <span class="f">Fe2S3</span> ، <span class="f">FeCl3</span> ، <span class="f">H2S</span></button><button class="opt">ب) <span class="f">FeS</span> ، <span class="f">FeCl2</span> ، <span class="f">H2S</span></button>
+   <button class="opt">ج) مخلوط S و Fe ، <span class="f">FeCl2</span> ، <span class="f">SO2</span></button><button class="opt">د) مخلوط S و Fe ، <span class="f">FeCl2</span> ، <span class="f">H2</span></button></div>
+  <div class="expl"></div>
+ </div>
+</section>
+
+<section class="slide" data-title="النيتريت: التعريف" style="--ac:var(--teal)">
+ <div class="sh"><div class="n">٤</div><h2>أنيون النيتريت <span class="f">NO2^-</span></h2><div class="bar"></div></div>
+ <div class="body">
+<div class="glass t30 st" data-a="fadeInUp"><span class="tag">التعريف</span><br>أنيون يشتق من <span class="tg">حمض النيتروز</span> <span class="f">HNO2</span> وهو حمض <b class="hl">غير ثابت</b>.</div><div class="card why st" data-a="flipInX"><h3>علل: يستخدم HCl في الكشف عن النيتريت ولا يصلح للنترات</h3><div class="t26">لأن <span class="f">HCl</span> <b class="hl">أكثر ثباتًا</b> من حمض النيتروز (يطرده)، لكنه <b class="cr">أقل ثباتًا</b> من حمض النيتريك الذي تشتق منه النترات.</div></div>
+ </div>
+</section>
+
+<section class="slide" data-title="الكشف الأساسي للنيتريت" style="--ac:var(--coral)">
+ <div class="sh"><div class="n">٤</div><h2>التجربة الأساسية للنيتريت</h2><div class="bar"></div></div>
+ <div class="body">
+<div class="glass t26 st" data-a="fadeInUp">ملح صلب (<span class="f">NaNO2</span>) + حمض <span class="f">HCl</span> مخفف</div><div class="eq sm st" data-a="fadeInUp">NaNO2 + HCl -> NaCl + HNO2</div><div class="glass t22 st" style="text-align:center;" data-a="fadeInUp">حمض النيتروز ينحل معطيًا حمض النيتريك + أكسيد النيتريك + ماء</div><div class="eq sm st" data-a="fadeInUp">3HNO2 —Δ→ HNO3 + H2O + 2NO ↑</div><div class="card okc st" data-a="fadeInRight"><h3>الغاز الناتج</h3><div class="t22">أكسيد النيتريك <span class="f">NO</span> <b class="hl">عديم اللون</b>، وسرعان ما يتحول عند فوهة الأنبوبة إلى غاز بني محمر (<span class="f">NO2</span>)</div></div><div class="eq sm st" data-a="fadeInUp">2NO + O2 -> 2NO2 (بني محمر)</div>
+ </div>
+</section>
+
+<section class="slide" data-title="رسم: كشف النيتريت بـ HCl" style="--ac:var(--coral)">
+ <div class="sh"><div class="n">🧪</div><h2>رسم التجربة الأساسية للنيتريت</h2><div class="bar"></div></div>
+ <div class="labwrap"><div class="labsvg"><div class="lab" data-lab="no" style="height:100%"></div></div>
+  <div class="caps">
+   <div class="c st" data-a="fadeInRight" data-stage="0">ملح نيتريت الصوديوم الصلب <span class="f">NaNO2</span></div>
+   <div class="c st" data-a="fadeInRight" data-stage="1">بنضيف حمض <span class="f">HCl</span> المخفف</div>
+   <div class="c st" data-a="fadeInRight" data-stage="2">بيتصاعد غاز <span class="f">NO</span> <b class="hl">عديم اللون</b></div>
+   <div class="c st" data-a="fadeInRight" data-stage="3">عند فوهة الأنبوبة بيتأكسد بأكسجين الهواء ويتحول لغاز <b class="cr">بني محمر</b> <span class="f">NO2</span></div>
+   <div class="eq sm st" data-a="fadeInUp">NaNO2 + HCl -> NaCl + HNO2</div>
+   <div class="eq sm st" data-a="fadeInUp">3HNO2 —Δ→ HNO3 + H2O + 2NO ↑</div>
+   <div class="eq sm st" data-a="fadeInUp">2NO + O2 -> 2NO2 (بني محمر)</div>
+  </div></div>
+</section>
+
+<section class="slide" data-title="علل النيتريت" style="--ac:var(--violet)">
+ <div class="sh"><div class="n">٤</div><h2>علل</h2><div class="bar"></div></div>
+ <div class="body">
+<div class="g3" style="flex:1;align-content:start;gap:14px"><div class="flipc st" role="button" tabindex="0" aria-pressed="false" data-a="zoomIn"><div class="flip-inner"><div class="fa">علل: يتحول لون NO للبني المحمر عند فوهة الأنبوبة<small>اضغط</small></div><div class="fb">لأنه يتأكسد بأكسجين الهواء ويتكون ثاني أكسيد النيتروجين NO2 البني المحمر</div></div></div><div class="flipc st" role="button" tabindex="0" aria-pressed="false" data-a="zoomIn"><div class="flip-inner"><div class="fa">علل: يصلح HCl للنيتريت ولا يصلح للنترات<small>اضغط</small></div><div class="fb">لأن HCl أكثر ثباتًا من حمض النيتروز وأقل ثباتًا من حمض النيتريك</div></div></div><div class="flipc st" role="button" tabindex="0" aria-pressed="false" data-a="zoomIn"><div class="flip-inner"><div class="fa">علل: لا يتفاعل HCl مع كبريتات الصوديوم<small>اضغط</small></div><div class="fb">لأن حمض HCl أقل ثباتًا من حمض الكبريتيك</div></div></div></div>
+ </div>
+</section>
+
+<section class="slide" data-title="التأكيدي للنيتريت" style="--ac:var(--blue)">
+ <div class="sh"><div class="n">٥</div><h2>التجربة التأكيدية للنيتريت</h2><div class="bar"></div></div>
+ <div class="body">
+<div class="glass t26 st" data-a="fadeInUp">محلول الملح + محلول <b class="hl">برمنجنات البوتاسيوم</b> <span class="f">KMnO4</span> المحمضة بحمض الكبريتيك</div><div class="eq sm st" data-a="fadeInUp">5NaNO2 + 2KMnO4 + 3H2SO4 -> 5NaNO3 + K2SO4 + 2MnSO4 + 3H2O</div><div class="big tg st center" data-a="tada">يزول اللون البنفسجي للبرمنجنات</div><div class="glass t22 st" style="text-align:center;" data-a="fadeInUp">بديل البرمنجنات: محلول <b class="hl">ثاني كرومات البوتاسيوم</b> <span class="f">K2Cr2O7</span> المحمضة، بيتحول من البرتقالي إلى الأخضر</div>
+ </div>
+</section>
+
+<section class="slide" data-title="رسم: نيتريت + برمنجنات" style="--ac:var(--blue)">
+ <div class="sh"><div class="n">🧪</div><h2>رسم التجربة التأكيدية للنيتريت</h2><div class="bar"></div></div>
+ <div class="labwrap"><div class="labsvg"><div class="lab" data-lab="kmno4" style="height:100%"></div></div>
+  <div class="caps">
+   <div class="c st" data-a="fadeInRight" data-stage="0">محلول نيتريت الصوديوم</div>
+   <div class="c st" data-a="fadeInRight" data-stage="1">بنضيف محلول <span class="f">KMnO4</span> المحمض بحمض الكبريتيك (<b class="vi">بنفسجي</b>)</div>
+   <div class="c st" data-a="fadeInRight" data-stage="2"><b class="hl">اللون البنفسجي بيروح</b> والمحلول يبقى عديم اللون</div>
+   <div class="eq sm st" data-a="fadeInUp">5NaNO2 + 2KMnO4 + 3H2SO4 -> 5NaNO3 + K2SO4 + 2MnSO4 + 3H2O</div>
+   <div class="c st" data-a="fadeInUp" style="font-size:21px">النيتريت اتأكسد <span class="f">N: +3 → +5</span> والمنجنيز اتختزل <span class="f">Mn: +7 → +2</span>. بديل: <span class="f">K2Cr2O7</span> برتقالي ← أخضر</div>
+  </div></div>
+</section>
+
+<section class="slide" data-title="أكسدة واختزال: الأساسية" style="--ac:var(--violet)">
+ <div class="sh"><div class="n">٦</div><h2>الأكسدة والاختزال في التجربة الأساسية</h2><div class="bar"></div></div>
+ <div class="body">
+<div class="glass t26 st" style="text-align:center;" data-a="fadeInUp"><span class="f">HNO2</span>: عدد تأكسد N: <span class="f">(+1)+N+(2×-2)=0 → N=+3</span></div><div class="g2"><div class="card  st" data-a="fadeInRight" style="--ac:var(--coral)"><h3>أكسدة</h3><div class="t22"><span class="f">N^+3 → N^+5</span> (في <span class="f">HNO3</span>)</div></div><div class="card  st" data-a="fadeInLeft" style="--ac:var(--green)"><h3>اختزال</h3><div class="t22"><span class="f">N^+3 → N^+2</span> (في <span class="f">NO</span>)</div></div></div><div class="glass t26 st" style="text-align:center;border-color:var(--amber)" data-a="tada">حمض النيتروز <b class="hl">بيتأكسد وبيتختزل في نفس الوقت</b></div>
+ </div>
+</section>
+
+<section class="slide" data-title="أكسدة واختزال: التأكيدية" style="--ac:var(--violet)">
+ <div class="sh"><div class="n">٦</div><h2>الأكسدة والاختزال في التجربة التأكيدية</h2><div class="bar"></div></div>
+ <div class="body">
+<div class="rx st" data-a="fadeInUp" id="rxx1"><div class="rbox" style="--ac:var(--coral)"><b><span>NaNO2</span></b>عامل مختزل<br><span class="f">N: +3 → +5</span></div><div class="eflow"><i>e⁻</i><i>e⁻</i><i>e⁻</i></div><div class="rbox" style="--ac:var(--green)"><b><span>KMnO4</span></b>عامل مؤكسد<br><span class="f">Mn: +7 → +2</span></div></div><div class="g2"><div class="card  st" data-a="fadeInRight" style="--ac:var(--violet)"><h3><span class="f">Mn^+7</span></h3><div class="t22"><span class="f">Ar 3d^0</span><br>دايا مغناطيسي (لا إلكترونات منفردة)</div></div><div class="card  st" data-a="fadeInLeft" style="--ac:var(--teal)"><h3><span class="f">Mn^+2</span></h3><div class="t22"><span class="f">Ar 3d^5</span><br>بارا مغناطيسي (5 إلكترونات منفردة)</div></div></div><div class="glass t22 st" style="text-align:center;" data-a="fadeInUp">البنفسجي ← عديم اللون: النيتريت اتأكسد، والمنجنيز اتختزل</div>
+ </div>
+</section>
+
+<section class="slide" data-title="مواد تزيل لون البرمنجنات" style="--ac:var(--amber)">
+ <div class="sh"><div class="n">٦</div><h2>مين بيزيل لون البرمنجنات؟</h2><div class="bar"></div></div>
+ <div class="body">
+<div class="glass t26 st" style="text-align:center;" data-a="fadeInUp">أي مادة <b class="hl">قابلة للأكسدة</b> تختزل البرمنجنات وتزيل لونها</div><div class="g3"><div class="card  st" data-a="fadeInRight" style="--ac:var(--coral)"><h3>أنيونات</h3><div class="t22">الكبريتيت <span class="f">SO3^2-</span><br>النيتريت <span class="f">NO2^-</span></div></div><div class="card  st" data-a="fadeInUp" style="--ac:var(--blue)"><h3>غاز</h3><div class="t22">ثاني أكسيد الكبريت <span class="f">SO2</span></div></div><div class="card  st" data-a="fadeInLeft" style="--ac:var(--green)"><h3>كاتيونات</h3><div class="t22">الحديد <span class="f">Fe^2+ → Fe^3+</span><br>كاتيونات انتقالية قابلة للأكسدة مثل <span class="f">Ti^3+ → Ti^4+</span></div></div></div>
+ </div>
+</section>
+
+<section class="slide" data-title="ملخص المجموعة" style="--ac:var(--teal)">
+ <div class="sh"><div class="n">٧</div><h2>ملخص المحاضرة</h2><div class="bar"></div></div>
+ <div class="body">
+<div class="g2"><div class="card  st" data-a="fadeInRight" style="--ac:var(--teal)"><h3>١) سبب استخدام HCl</h3><div class="t22">HCl أكثر ثباتًا من <span class="f">H2S</span> و<span class="f">H2SO3</span> و<span class="f">H2S2O3</span> و<span class="f">HNO2</span>، فبيستخدم في الكشف عن الأنيونات المشتقة منها</div></div><div class="card  st" data-a="fadeInLeft" style="--ac:var(--amber)"><h3>٢) الغاز الناتج</h3><div class="t22">أقل بذرة أكسجين واحدة عن الشق الحامضي، <b class="hl">عدا الكبريتيد</b> (بيدّي <span class="f">H2S</span>)</div></div><div class="card  st" data-a="fadeInRight" style="--ac:var(--coral)"><h3>٣) غازات قابلة للأكسدة</h3><div class="t22"><span class="f">SO2</span> و <span class="f">NO</span></div></div><div class="card  st" data-a="fadeInLeft" style="--ac:var(--violet)"><h3>٤) غازات غير قابلة للأكسدة</h3><div class="t22"><span class="f">NO2</span> و <span class="f">SO3</span> و <span class="f">CO2</span></div></div></div><div class="glass t22 st" style="text-align:center;" data-a="fadeInUp">البدائل: <span class="f">AgNO3</span> ← <span class="f">AgHCO3</span> &nbsp;|&nbsp; <span class="f">(CH3COO)2Pb</span> ← نيترات الرصاص أو بيكربونات الرصاص</div>
+ </div>
+</section>
+
+<section class="slide" data-title="الجدول النهائي" style="--ac:var(--blue)">
+ <div class="sh"><div class="n">٧</div><h2>جدول مجموعة HCl المخفف</h2><div class="bar"></div></div>
+ <div class="body">
+<table class="tb" style="font-size:21px"><tr><th>الأنيون</th><th>التجربة الأساسية (HCl مخفف)</th><th>التجربة التأكيدية</th></tr><tr class="st" data-a="fadeInUp"><td><b>الكربونات <span class="f">CO3^2-</span></b></td><td><span class="f">CO2</span> يعكر ماء الجير</td><td>محلول Mg أو Ca أو Ba: راسب أبيض</td></tr><tr class="st" data-a="fadeInUp"><td><b>البيكربونات <span class="f">HCO3^-</span></b></td><td><span class="f">CO2</span> يعكر ماء الجير</td><td>نفس الكواشف: راسب أبيض بعد التسخين</td></tr><tr class="st" data-a="fadeInUp"><td><b>الكبريتيت <span class="f">SO3^2-</span></b></td><td><span class="f">SO2</span> يخضر ورقة <span class="f">K2Cr2O7</span></td><td><span class="f">AgNO3</span>: أبيض يسود بالتسخين</td></tr><tr class="st" data-a="fadeInUp"><td><b>الكبريتيد <span class="f">S^2-</span></b></td><td><span class="f">H2S</span> يسود ورقة أسيتات الرصاص</td><td><span class="f">AgNO3</span>: أسود على طول</td></tr><tr class="st" data-a="fadeInUp"><td><b>الثيوكبريتات <span class="f">S2O3^2-</span></b></td><td><span class="f">SO2</span> + راسب كبريت أصفر</td><td>محلول اليود: يزول لونه البني</td></tr><tr class="st" data-a="fadeInUp"><td><b>النيتريت <span class="f">NO2^-</span></b></td><td><span class="f">NO</span> يتحول لبني محمر <span class="f">NO2</span></td><td><span class="f">KMnO4</span>: يزول لونه البنفسجي</td></tr></table>
+ </div>
+</section>
+<section class="slide challenge-slide" data-title="سؤال التحدي" style="--ac:var(--violet)">
+ <div class="sh">
+  <div class="n">★</div>
+  <h2>تحدي Dr.Mohammed</h2>
+  <div class="bar"></div>
+ </div>
+
+ <div class="body">
+  <div class="challenge-lead st" data-a="fadeInUp">
+   سؤال محتاج تربط فيه بين التجربة الأساسية والتجربة التأكيدية
+  </div>
+
+  <div class="challenge-question st" data-a="zoomIn">
+   ملحان X وY، عند إضافة حمض HCl المخفف لكل منهما يتصاعد غاز عديم اللون والرائحة يعكر ماء الجير.
+   وعند إضافة محلول AgNO3 إلى الملحين لا يتكون راسب مع X، بينما يتكون راسب مع Y.
+   فما الأنيونان X وY؟
+  </div>
+
+  <div class="opts challenge-options st"
+       data-mini="2"
+       data-ex="الغاز هو CO2، ولذلك فالاحتمالان الكربونات والبيكربونات. مع البيكربونات لا يتكون راسب لأن AgHCO3 ذائب، بينما الكربونات تعطي راسب Ag2CO3. إذن X بيكربونات وY كربونات.">
+
+   <button class="opt">
+    <span class="ot">أ) X كربونات ، Y بيكربونات</span>
+   </button>
+
+   <button class="opt">
+    <span class="ot">ب) X بيكربونات ، Y كربونات</span>
+   </button>
+
+   <button class="opt">
+    <span class="ot">ج) X كبريتيد ، Y كبريتيت</span>
+   </button>
+
+   <button class="opt">
+    <span class="ot">د) X نيتريت ، Y ثيوكبريتات</span>
+   </button>
+  </div>
+
+  <div class="expl" aria-live="polite"></div>
+
+  <div class="challenge-note st" data-a="fadeInUp">
+   اختار إجابتك الأول، وبعدها هتظهرلك طريقة التفكير
+  </div>
+ </div>
+</section>
+<section class="slide" data-title="مراجعة سريعة" style="--ac:var(--amber)">
+ <div class="sh">
+  <div class="n">⚡</div>
+  <h2>مراجعة في دقيقة واحدة</h2>
+  <div class="bar"></div>
+ </div>
+
+ <div class="body">
+  <div class="review-layout">
+
+   <div class="review-panel">
+    <h3>🎨 أولًا: ألوان الرواسب</h3>
+
+    <div class="review-list">
+
+     <div class="review-item" style="--item-ac:var(--coral)">
+      <span class="review-name">
+       <span class="review-formula">Ag2S</span>
+       <br>كبريتيد الفضة
+      </span>
+      <span class="review-pill black">أسود فورًا</span>
+     </div>
+
+     <div class="review-item" style="--item-ac:var(--violet)">
+      <span class="review-name">
+       <span class="review-formula">Ag2SO3</span>
+       <br>كبريتيت الفضة
+      </span>
+      <span class="review-pill white">أبيض ← أسود بالتسخين</span>
+     </div>
+
+     <div class="review-item" style="--item-ac:var(--amber)">
+      <span class="review-name">
+       <span class="review-formula">S</span>
+       <br>الكبريت
+      </span>
+      <span class="review-pill yellow">أصفر</span>
+     </div>
+
+     <div class="review-item" style="--item-ac:var(--blue)">
+      <span class="review-name">
+       <span class="review-formula">CaCO3</span>
+       <br>كربونات الكالسيوم
+      </span>
+      <span class="review-pill white">أبيض</span>
+     </div>
+
+    </div>
+
+    <div class="review-footer">
+     احفظ الفرق: الكبريتيت أبيض ثم يسود، والكبريتيد أسود فورًا
+    </div>
+   </div>
+
+   <div class="review-panel">
+    <h3>💨 ثانيًا: الغازات والكواشف</h3>
+
+    <div class="review-list">
+
+     <div class="review-item" style="--item-ac:var(--blue)">
+      <span class="review-name">
+       <span class="review-formula">CO2</span>
+       <br>ثاني أكسيد الكربون
+      </span>
+      <span class="review-pill clear">عديم اللون والرائحة</span>
+     </div>
+
+     <div class="review-item" style="--item-ac:var(--amber)">
+      <span class="review-name">
+       <span class="review-formula">SO2</span>
+       <br>ثاني أكسيد الكبريت
+      </span>
+      <span class="review-pill orange">رائحة نفاذة</span>
+     </div>
+
+     <div class="review-item" style="--item-ac:var(--coral)">
+      <span class="review-name">
+       <span class="review-formula">H2S</span>
+       <br>كبريتيد الهيدروجين
+      </span>
+      <span class="review-pill clear">رائحة كريهة</span>
+     </div>
+
+     <div class="review-item" style="--item-ac:var(--teal)">
+      <span class="review-name">
+       <span class="review-formula">NO</span>
+       <br>أكسيد النيتريك
+      </span>
+      <span class="review-pill clear">عديم اللون</span>
+     </div>
+
+     <div class="review-item" style="--item-ac:var(--coral)">
+      <span class="review-name">
+       <span class="review-formula">NO2</span>
+       <br>ثاني أكسيد النيتروجين
+      </span>
+      <span class="review-pill brown">بني محمر</span>
+     </div>
+
+    </div>
+
+    <div class="review-footer">
+     CO2 يعكر ماء الجير | H2S يسود ورقة الرصاص
+     <br>
+     SO2 يحول ثنائي الكرومات للأخضر | NO يتحول إلى NO2
+    </div>
+   </div>
+
+  </div>
+ </div>
+</section>
+
+<section class="slide cover" data-title="اختبر نفسك" data-quizstart="1" style="--ac:var(--amber)">
+ <div class="chip in" data-a="bounceIn">اختبر نفسك على المحاضرة الثانية</div>
+ <h1 class="in" data-a="zoomIn" style="font-size:90px">جاهز؟</h1>
+ <div class="s1 in" data-a="fadeInUp">9 أسئلة من أسئلة المحاضرة، وكل سؤال معاه شرحه</div>
+ <div class="go in" data-a="pulse">اضغط للبدء</div>
+</section>
+
+<!-- RESULTS (after generated questions) -->
+<section class="slide center" data-title="النتيجة" data-results="1" style="--ac:var(--teal)">
+ <h2 style="font-size:50px;font-weight:900;margin-bottom:20px" class="in" data-a="fadeInDown">نتيجتك</h2>
+ <div class="ring in" data-a="zoomIn" id="ring" style="--p:0"><span id="ringTxt">0</span></div>
+ <div class="big" id="resMsg" style="margin-top:20px"></div>
+ <div class="t26 mut" style="margin-top:8px">اضغط M للقائمة وارجع لأي جزء، أو R تعيد الاختبار</div>
+</section>
+<section class="slide mindmap-slide" data-title="الخريطة الذهنية" style="--ac:var(--teal)">
+ <div class="sh">
+  <div class="n">✦</div>
+  <h2>الخريطة الذهنية للمحاضرة</h2>
+  <div class="bar"></div>
+ </div>
+
+ <div class="body mindmap-body">
+
+  <div class="mindmap-core st" data-a="zoomIn">
+   مجموعة أنيونات حمض HCl المخفف
+  </div>
+
+  <div class="mindmap-subtitle st" data-a="fadeIn">
+   ملح صلب + HCl مخفف ← نحدد الغاز الناتج ← نستخدم الكاشف التأكيدي
+  </div>
+
+  <div class="mindmap-grid">
+
+   <div class="mindmap-node st" data-a="fadeInRight" style="--node-ac:var(--teal)">
+    <h3>١. الكربونات</h3>
+    <p><b>الأساسي:</b> <span class="f">CO2</span> يعكر ماء الجير</p>
+    <p><b>التأكيدي:</b> كواشف Mg أو Ca أو Ba تعطي راسبًا أبيض</p>
+   </div>
+
+   <div class="mindmap-node st" data-a="fadeInUp" style="--node-ac:var(--amber)">
+    <h3>٢. البيكربونات</h3>
+    <p><b>الأساسي:</b> <span class="f">CO2</span> يعكر ماء الجير</p>
+    <p><b>التأكيدي:</b> راسب أبيض بعد التسخين مع الكواشف المناسبة</p>
+   </div>
+
+   <div class="mindmap-node st" data-a="fadeInLeft" style="--node-ac:var(--violet)">
+    <h3>٣. الكبريتيت</h3>
+    <p><b>الأساسي:</b> <span class="f">SO2</span> يحول ثنائي الكرومات للأخضر</p>
+    <p><b>التأكيدي:</b> <span class="f">AgNO3</span> راسب أبيض يسود بالتسخين</p>
+   </div>
+
+   <div class="mindmap-node st" data-a="fadeInRight" style="--node-ac:var(--coral)">
+    <h3>٤. الكبريتيد</h3>
+    <p><b>الأساسي:</b> <span class="f">H2S</span> يسود ورقة أسيتات الرصاص</p>
+    <p><b>التأكيدي:</b> <span class="f">AgNO3</span> راسب أسود فورًا</p>
+   </div>
+
+   <div class="mindmap-node st" data-a="fadeInUp" style="--node-ac:var(--blue)">
+    <h3>٥. الثيوكبريتات</h3>
+    <p><b>الأساسي:</b> <span class="f">SO2</span> + كبريت أصفر</p>
+    <p><b>التأكيدي:</b> محلول اليود البني يزول لونه</p>
+   </div>
+
+   <div class="mindmap-node st" data-a="fadeInLeft" style="--node-ac:var(--green)">
+    <h3>٦. النيتريت</h3>
+    <p><b>الأساسي:</b> <span class="f">NO</span> يتحول إلى <span class="f">NO2</span> بني محمر</p>
+    <p><b>التأكيدي:</b> <span class="f">KMnO4</span> البنفسجي يزول لونه</p>
+   </div>
+
+  </div>
+
+  <div class="mindmap-footer st" data-a="fadeInUp">
+   مفتاح الحفظ: الغاز الناتج ← الملاحظة ← الكاشف التأكيدي
+  </div>
+
+ </div>
+</section>
+
+<!-- END -->
+<section class="slide cover" data-title="النهاية" style="--ac:var(--teal)">
+ <h1 class="in" data-a="jackInTheBox" style="font-size:90px">بالتوفيق</h1>
+ <div class="s1 in" data-a="fadeInUp">بحبك</div>
+ <div class="s2 in" data-a="fadeInUp">Dr / Mohammed</div>
+</section>
+
+<div class="hint" id="hint">اضغط للتالي</div>
+<div class="hud"><div id="cnt">1 / 1</div><div id="ttl"></div><div class="btns"><button onclick="location.href='index.html'">الرئيسية</button><button id="bM">القائمة</button><button id="bP">السابق</button><button id="bN">التالي</button><button id="bT">الوضع</button><button id="bPDF" title="تحميل كل شريحة في صفحة PDF مستقلة">تحميل PDF</button><button id="bF">ملء الشاشة</button></div></div>
+<div class="menu" id="menu" role="dialog" aria-label="اختيار الشريحة"><h3>اختار الشريحة</h3><div class="grid" id="mgrid"></div></div>
+</div>
+
+<script>
+(function(){
+const stage=document.getElementById('stage');
+function fit(){const s=Math.min(innerWidth/1280,innerHeight/720);stage.style.transform='translate(-50%,-50%) scale('+s+')'}
+addEventListener('resize',fit);fit();
+
+/* chemistry formatter */
+function conv(t){
+ t=t.replace(/<->|<=>/g,'⇌').replace(/->/g,'→');
+ t=t.replace(/([A-Za-z\)\]])(\d+)/g,'$1<sub>$2</sub>');
+ t=t.replace(/\^([+\-−]?\d*\.?\d*[+\-−]?)/g,function(m,a){return '<sup>'+a.replace(/-/g,'−')+'</sup>'});
+ return t}
+document.querySelectorAll('.f,.eq,.rbox span,.mut .f').forEach(function(e){if(e.children.length===0&&!e.dataset.cv){e.dataset.cv=1;e.innerHTML=conv(e.textContent)}});
+document.querySelectorAll('.tb td,.card .t22,.card .t26').forEach(function(e){});
+
+/* quiz data */
+const Q=[{"q": "يمكن التخلص من غاز (الأول) بمحلول قاعدي، وغاز (الثاني) بمحلول ملح حمض عضوي", "o": ["NH3 , H2S", "H2S , CO2", "CO2 , H2S", "SO2 , CO2"], "a": 2, "e": "CO2 غاز حمضي بيتخلص منه بمحلول قاعدي زي Ca(OH)2. أما H2S فبيتخلص منه بمحلول أسيتات الرصاص (CH3COO)2Pb لأنها ملح حمض عضوي."}, {"q": "يزول لون محلول اليود البني عند إضافته إلى محلول", "o": ["ثيوكبريتات الصوديوم", "كبريتات الصوديوم", "بيكربونات الصوديوم", "كربونات الصوديوم"], "a": 0, "e": "الثيوكبريتات بتختزل اليود فيزول لونه البني، وباقي الأملاح مبتتفاعلش مع اليود."}, {"q": "أي من هذه المركبات يمكن أكسدته بواسطة محلول برمنجنات البوتاسيوم المحمضة؟", "o": ["الكربونات", "الكبريتيت", "الكبريتات", "النترات"], "a": 1, "e": "الكبريتيت قابل للأكسدة (S في +4 بتروح +6) فيزيل لون البرمنجنات. الباقي مش قابل للأكسدة."}, {"q": "في المعادلة: ملح + 2HCl → 2NaCl + X(g)، أي العبارات صحيحة عن الغاز X؟", "o": ["غاز نفاذ الرائحة يخضر ورقة K2Cr2O7 المحمضة", "غاز كريه الرائحة يسود ورقة مبللة بأسيتات الرصاص II", "غاز عديم اللون والرائحة يعكر ماء الجير", "غاز عديم اللون يتأكسد عند الفوهة ويعطي غازًا بنيًا محمرًا"], "a": 1, "e": "الملح Na2S (لأن الناتج 2NaCl)، والغاز H2S كريه الرائحة ويسود ورقة أسيتات الرصاص II."}, {"q": "ثلاث أنابيب X و Y و Z فيها أملاح صوديوم. مع HCl المخفف يتصاعد غاز في الثلاثة. ومع AgNO3: X راسب أبيض يسود بالتسخين، Y راسب أسود، Z لا يتكون راسب. أي مما يلي يعبر عن أنيونات X و Y و Z؟", "o": ["X ثيوكبريتات ، Y كبريتات ، Z بيكربونات", "X كبريتيت ، Y كبريتيد ، Z كربونات", "X كبريتيت ، Y كبريتيد ، Z بيكربونات", "X كبريتيد ، Y كبريتات ، Z كربونات"], "a": 2, "e": "الأبيض اللي يسود بالتسخين كبريتيت، والأسود على طول كبريتيد. وبيكربونات الفضة AgHCO3 بتدوب فمفيش راسب، أما كربونات الفضة Ag2CO3 فراسب."}, {"q": "عدد الأزواج التي يمكن استخدام HCl المخفف في الكشف عن كلا الأنيونين فيها: (كبريتيد وبروميد) (كلوريد وكربونات) (كربونات وبيكربونات) (نيتريت وكبريتات)", "o": ["1", "2", "3", "4"], "a": 0, "e": "الأنيونات اللي HCl بيكشف عنها: كربونات وبيكربونات وكبريتيت وكبريتيد وثيوكبريتات ونيتريت. الزوج الوحيد اللي الاتنين فيه ينفع HCl هو الكربونات والبيكربونات. والباقي فيه أنيون (بروميد أو كلوريد أو كبريتات) مبيتكشفش بـ HCl."}, {"q": "ملحان X و Y أضيف إليهما HCl كلًا على حدة. تصاعد مع X غاز عديم اللون، ومع Y غاز عديم اللون يتغير لونه عند فوهة الأنبوبة. أنيونا X و Y هما", "o": ["X: CO3^2- , Y: NO2^-", "X: SO3^2- , Y: S^2-", "X: CO3^2- , Y: S2O3^2-", "X: S2O3^2- , Y: CO3^2-"], "a": 0, "e": "X ينتج CO2 عديم اللون. Y ينتج NO عديم اللون وبيتحول لبني محمر NO2 عند الفوهة، فهو النيتريت."}, {"q": "ملحان X و Y، وعند إضافة HCl لكل منهما يتصاعد نفس الغاز الذي يزيل لون برمنجنات البوتاسيوم المحمضة. فأي مما يأتي يمثل X و Y؟", "o": ["X: CO3^2- , Y: HCO3^-", "X: SO3^2- , Y: CO3^2-", "X: SO3^2- , Y: S2O3^2-", "X: S2O3^2- , Y: HCO3^-"], "a": 2, "e": "الغاز اللي يزيل لون البرمنجنات هو SO2، وبيطلع من الكبريتيت ومن الثيوكبريتات (مع راسب كبريت أصفر)."}, {"q": "مخطط: مادة صلبة X + HCl → غازان A و B. ورقة مبللة بأسيتات الرصاص II تسود في الغاز، ومحلول X + AgNO3 → خليط من راسبين مختلفين في اللون. أي مما يأتي صحيح؟", "o": ["X خليط من بيكربونات النحاس II وكبريتيد الصوديوم", "X قد يكون كبريتيد الصوديوم فقط والغاز B: CO2", "X قد يكون كبريتيت الصوديوم فقط والغاز B: SO2", "X خليط من ملحي كبريتيت وكبريتيد الصوديوم"], "a": 3, "e": "الغازان H2S (يسود ورقة الرصاص) وSO2، وراسبا الفضة أبيض Ag2SO3 وأسود Ag2S. يعني X خليط من كبريتيت وكبريتيد الصوديوم."}];
+let score=0,answered=0;
+const anchor=document.querySelector('[data-results]');
+Q.forEach(function(it,i){
+ const s=document.createElement('section');s.className='slide quiz-slide';s.dataset.title='سؤال '+(i+1);s.style.setProperty('--ac','var(--amber)');
+ const opts=it.o.map(function(t,j){return '<button class="opt" data-j="'+j+'">'+'<span class="ot">'+['أ','ب','ج','د'][j]+') '+fq(esc(t))+'</span></button>'}).join('');
+ s.innerHTML='<div class="qh" aria-live="polite"><span>سؤال '+(i+1)+' من '+Q.length+'</span><span id="sc'+i+'">النتيجة: 0</span></div><div class="qt" style="white-space:pre-line;font-size:'+(it.q.length>160?'29px':it.q.length>90?'31px':'36px')+'">'+fq(esc(it.q))+'</div><div class="opts">'+opts+'</div><div class="expl" aria-live="polite"></div>';
+ s.querySelectorAll('.opt').forEach(function(b){b.addEventListener('click',function(){
+  if(s.dataset.done)return;s.dataset.done=1;answered++;
+  const j=+b.dataset.j;
+  s.querySelectorAll('.opt').forEach(function(x){x.classList.add('dis')});
+  const ok=j===it.a;
+  if(ok){score++;b.classList.add('right','animate__animated','animate__tada')}else{b.classList.add('wrong','animate__animated','animate__headShake');const r=s.querySelectorAll('.opt')[it.a];r.classList.add('right','animate__animated','animate__pulse')}
+  const ex=s.querySelector('.expl');ex.style.display='block';ex.className='expl animate__animated animate__fadeInUp';ex.style.display='block';
+  ex.innerHTML=(ok?'<b class="gr">إجابة صح. </b>':'<b class="cr">إجابة غلط. </b>')+fq(esc(it.e));
+  s.querySelector('[id^=sc]').textContent='النتيجة: '+score;
+ })});
+ anchor.parentNode.insertBefore(s,anchor)});
+function fq(t){
+ const wrapped=t.replace(/(?<![&A-Za-z0-9])[A-Za-z][A-Za-z0-9^+\-−().,:→⇌—Δ ]*/g,function(m){
+  const tail=(m.match(/[\s,.:]+$/)||[''])[0];const core=tail?m.slice(0,m.length-tail.length):m;
+  return '<span class="f">'+core+'</span>'+tail});
+ return conv(wrapped)}
+function esc(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+
+/* mini quiz */
+document.querySelectorAll('[data-mini]').forEach(function(box){
+ const right=+box.dataset.mini-1;const ex=box.parentNode.querySelector('.expl');
+ box.querySelectorAll('.opt').forEach(function(b,j){b.addEventListener('click',function(){
+  if(box.dataset.done)return;box.dataset.done=1;
+  box.querySelectorAll('.opt').forEach(function(x){x.classList.add('dis')});
+  const ok=j===right;b.classList.add(ok?'right':'wrong','animate__animated',ok?'animate__tada':'animate__headShake');
+  if(!ok)box.querySelectorAll('.opt')[right].classList.add('right');
+  ex.style.display='block';ex.className='expl animate__animated animate__fadeInUp';ex.style.display='block';
+  ex.innerHTML=(ok?'<b class="gr">صح. </b>':'<b class="cr">غلط. </b>')+fq(esc(box.dataset.ex))})})});
+
+/* flip cards */
+document.querySelectorAll('.flipc').forEach(function(c){
+ function flip(){const isFlipped=c.classList.toggle('flipped');c.setAttribute('aria-pressed',String(isFlipped))}
+ c.addEventListener('click',flip);
+ c.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();flip()}})
+});
+
+/* labs */
+const CLEAR='rgba(150,205,240,.38)',BROWN='rgba(122,64,20,.92)';
+function T(o){return Object.assign({liq:null,solid:null,cloud:0,cc:'#fff',ppt:null,bub:false},o||{})}
+const LABS={
+co2:{tubes:[{x:130,l:'ملح كربونات / بيكربونات'},{x:330,l:'ماء جير رائق'}],pipe:true,st:[
+ {t:[T({solid:'#f1f5f9'}),T({liq:CLEAR})]},
+ {t:[T({solid:'#f1f5f9',liq:CLEAR}),T({liq:CLEAR})],drop:[{i:0,c:'#dbeafe'}]},
+ {t:[T({solid:'#f1f5f9',liq:CLEAR,bub:true}),T({liq:CLEAR,bub:true})]},
+ {t:[T({solid:'#f1f5f9',liq:CLEAR,bub:true}),T({liq:CLEAR,bub:true,cloud:.88})]}]},
+mg:{tubes:[{x:130,l:'كربونات صوديوم'},{x:330,l:'بيكربونات صوديوم'}],st:[
+ {t:[T({liq:CLEAR}),T({liq:CLEAR})]},
+ {t:[T({liq:CLEAR}),T({liq:CLEAR})],drop:[{i:0,c:'#dbeafe'},{i:1,c:'#dbeafe'}]},
+ {t:[T({liq:CLEAR,cloud:.85,ppt:'#fff'}),T({liq:CLEAR})]},
+ {t:[T({liq:CLEAR,cloud:.85,ppt:'#fff'}),T({liq:CLEAR})],flame:1},
+ {t:[T({liq:CLEAR,cloud:.85,ppt:'#fff'}),T({liq:CLEAR,cloud:.85,ppt:'#fff',bub:true})],flame:1}]},
+so3:{tubes:[{x:230,l:'كبريتيت صوديوم صلب'}],paper:true,st:[
+ {t:[T({solid:'#f1f5f9'})],paper:'#f59e0b'},
+ {t:[T({solid:'#f1f5f9',liq:CLEAR})],paper:'#f59e0b',drop:[{i:0,c:'#dbeafe'}]},
+ {t:[T({solid:'#f1f5f9',liq:CLEAR,bub:true})],paper:'#f59e0b',gas:true},
+ {t:[T({solid:'#f1f5f9',liq:CLEAR,bub:true})],paper:'#16a34a',gas:true}]},
+so3ag:{tubes:[{x:230,l:'محلول كبريتيت الصوديوم'}],st:[
+ {t:[T({liq:CLEAR})]},
+ {t:[T({liq:CLEAR})],drop:[{i:0,c:'#e5e7eb'}]},
+ {t:[T({liq:CLEAR,cloud:.88,ppt:'#fff'})]},
+ {t:[T({liq:CLEAR,cloud:.88,ppt:'#fff'})],flame:0},
+ {t:[T({liq:CLEAR,cloud:.9,cc:'#0b0b0b',ppt:'#050505'})],flame:0}]},
+s2o3:{tubes:[{x:230,l:'ثيوكبريتات صوديوم صلب'}],paper:true,st:[
+ {t:[T({solid:'#f1f5f9'})],paper:'#f59e0b'},
+ {t:[T({solid:'#f1f5f9',liq:CLEAR})],paper:'#f59e0b',drop:[{i:0,c:'#dbeafe'}]},
+ {t:[T({solid:'#f1f5f9',liq:CLEAR,bub:true})],paper:'#16a34a',gas:true},
+ {t:[T({solid:'#f1f5f9',liq:CLEAR,bub:true,cloud:.85,cc:'#facc15',ppt:'#facc15'})],paper:'#16a34a',gas:true}]},
+s2o3i:{tubes:[{x:130,l:'ثيوكبريتات الصوديوم'},{x:330,l:'محلول اليود (مقارنة)'}],st:[
+ {t:[T({liq:CLEAR}),T({liq:BROWN})]},
+ {t:[T({liq:CLEAR}),T({liq:BROWN})],drop:[{i:0,c:'#7a4014'}]},
+ {t:[T({liq:CLEAR}),T({liq:BROWN})]}]}
+};
+const VIOLET='rgba(126,34,206,.88)';
+LABS.h2s={tubes:[{x:230,l:'كبريتيد صوديوم صلب'}],paper:true,paperLabel:'ورقة أسيتات الرصاص',st:[
+ {t:[T({solid:'#f1f5f9'})],paper:'#f8fafc'},
+ {t:[T({solid:'#f1f5f9',liq:CLEAR})],paper:'#f8fafc',drop:[{i:0,c:'#dbeafe'}]},
+ {t:[T({solid:'#f1f5f9',liq:CLEAR,bub:true})],paper:'#f8fafc',gas:true},
+ {t:[T({solid:'#f1f5f9',liq:CLEAR,bub:true})],paper:'#111827',gas:true}]};
+LABS.ag2s={tubes:[{x:230,l:'محلول كبريتيد الصوديوم'}],st:[
+ {t:[T({liq:CLEAR})]},
+ {t:[T({liq:CLEAR})],drop:[{i:0,c:'#e5e7eb'}]},
+ {t:[T({liq:CLEAR,cloud:.9,cc:'#0b0b0b',ppt:'#050505'})]},
+ {t:[T({liq:CLEAR,cloud:.9,cc:'#0b0b0b',ppt:'#050505'})],flame:0}]};
+LABS.no={tubes:[{x:230,l:'نيتريت صوديوم صلب'}],gasOnly:true,st:[
+ {t:[T({solid:'#f1f5f9'})]},
+ {t:[T({solid:'#f1f5f9',liq:CLEAR})],drop:[{i:0,c:'#dbeafe'}]},
+ {t:[T({solid:'#f1f5f9',liq:CLEAR,bub:true})],gas:true,gasc:'#e2e8f0'},
+ {t:[T({solid:'#f1f5f9',liq:CLEAR,bub:true})],gas:true,gasc:'#b45309'}]};
+LABS.kmno4={tubes:[{x:230,l:'محلول نيتريت الصوديوم'}],st:[
+ {t:[T({liq:CLEAR})]},
+ {t:[T({liq:VIOLET})],drop:[{i:0,c:'#7e22ce'}]},
+ {t:[T({liq:CLEAR})]}]};
+const NS='http://www.w3.org/2000/svg';
+function tubePath(x){return 'M'+(x-38)+',70 L'+(x-38)+',235 A38,38 0 0 0 '+(x+38)+',235 L'+(x+38)+',70'}
+function buildLab(el){
+ const cfg=LABS[el.dataset.lab];const id=el.dataset.lab;
+ let h='<svg viewBox="0 0 460 360" xmlns="'+NS+'"><defs>';
+ cfg.tubes.forEach(function(t,i){h+='<clipPath id="cp'+id+i+'"><path d="'+tubePath(t.x)+' Z"/></clipPath>'});
+ h+='</defs>';
+ if(cfg.pipe){h+='<path d="M'+cfg.tubes[0].x+',48 L'+cfg.tubes[0].x+',20 L'+cfg.tubes[1].x+',20 L'+cfg.tubes[1].x+',250" fill="none" stroke="#cbd5e1" stroke-width="7" stroke-linejoin="round" opacity=".85"/>'}
+ cfg.tubes.forEach(function(t,i){
+  const x=t.x;
+  h+='<g class="tb'+i+'">';
+  h+='<g clip-path="url(#cp'+id+i+')">';
+  h+='<rect class="liq" x="'+(x-40)+'" y="140" width="80" height="120" fill="'+CLEAR+'" opacity="0"/>';
+  h+='<ellipse class="ppt" cx="'+x+'" cy="244" rx="34" ry="16" fill="#fff" opacity="0"/>';
+  h+='<rect class="cloud" x="'+(x-40)+'" y="140" width="80" height="120" fill="#fff" opacity="0"/>';
+  h+='<ellipse class="solid" cx="'+x+'" cy="250" rx="26" ry="11" fill="#f1f5f9" opacity="0"/>';
+  h+='<g class="bub" opacity="0">';
+  [[-18,235,0],[0,238,.5],[16,233,1],[-8,242,1.4],[10,240,.9]].forEach(function(b){h+='<circle cx="'+(x+b[0])+'" cy="'+b[1]+'" r="'+(4+(b[2]>1?1:0))+'" fill="#fff" opacity="0" style="animation-delay:'+b[2]+'s"/>'});
+  h+='</g></g>';
+  h+='<path d="'+tubePath(x)+'" fill="none" stroke="#e2e8f0" stroke-width="5" stroke-linecap="round"/>';
+  h+='<rect x="'+(x-44)+'" y="62" width="88" height="10" rx="5" fill="#e2e8f0"/>';
+  h+='<ellipse class="dropc" cx="'+x+'" cy="20" rx="7" ry="10" fill="#dbeafe" opacity="0"/>';
+  h+='<g class="flamegrp" opacity="0"><rect x="'+(x-16)+'" y="318" width="32" height="26" rx="5" fill="#64748b"/><path class="flame" d="M'+x+',276 C'+(x+22)+',296 '+(x+16)+',316 '+x+',316 C'+(x-16)+',316 '+(x-22)+',296 '+x+',276 Z" fill="#ff9f1c"/><path class="flame" d="M'+x+',296 C'+(x+10)+',306 '+(x+8)+',316 '+x+',316 C'+(x-8)+',316 '+(x-10)+',306 '+x+',296 Z" fill="#ffe066"/></g>';
+  h+='<text x="'+x+'" y="352" text-anchor="middle" fill="#cfe9ff" font-size="19" font-weight="700" font-family="Cairo,sans-serif">'+t.l+'</text>';
+  h+='</g>'});
+ if(cfg.paper||cfg.gasOnly){const x=cfg.tubes[0].x;if(cfg.paper)h+='<rect class="paperR" x="'+(x-16)+'" y="8" width="32" height="64" rx="4" fill="#f59e0b" stroke="#fff" stroke-width="2"/><text x="'+(x+48)+'" y="30" fill="#ffc857" font-size="16" font-weight="700" font-family="Cairo,sans-serif">'+(cfg.paperLabel||'ورقة K2Cr2O7')+'</text>';
+  h+='<g class="gasg" opacity="0">';[[-10,60,0],[8,58,.8],[0,64,1.5],[14,62,.4]].forEach(function(b){h+='<circle cx="'+(x+b[0])+'" cy="'+b[1]+'" r="5" fill="#e2e8f0" opacity="0" style="animation-delay:'+b[2]+'s"/>'});h+='</g>'}
+ h+='</svg>';el.innerHTML=h;
+ el._cfg=cfg;el._st=-1}
+function setLab(el,n){
+ if(el._st===n)return;el._st=n;
+ const st=el._cfg.st[n];const svg=el.querySelector('svg');
+ el._cfg.tubes.forEach(function(t,i){
+  const s=st.t[i];const g=svg.querySelector('.tb'+i);
+  const liq=g.querySelector('.liq'),ppt=g.querySelector('.ppt'),cl=g.querySelector('.cloud'),so=g.querySelector('.solid'),bub=g.querySelector('.bub');
+  liq.setAttribute('fill',s.liq||CLEAR);liq.setAttribute('opacity',s.liq?1:0);
+  ppt.setAttribute('fill',s.ppt||'#fff');ppt.setAttribute('opacity',s.ppt?1:0);
+  cl.setAttribute('fill',s.cc);cl.setAttribute('opacity',s.cloud);
+  so.setAttribute('opacity',s.solid?(s.liq?.45:1):0);if(s.solid)so.setAttribute('fill',s.solid);
+  bub.setAttribute('opacity',s.bub?1:0);
+  g.querySelector('.flamegrp').setAttribute('opacity',st.flame===i?1:0);
+  const dr=g.querySelector('.dropc');dr.classList.remove('go');
+  const d=(st.drop||[]).filter(function(q){return q.i===i})[0];
+  if(d){dr.setAttribute('fill',d.c);void dr.getBoundingClientRect();dr.classList.add('go')}
+ });
+ const pr=svg.querySelector('.paperR');if(pr&&st.paper)pr.setAttribute('fill',st.paper);
+ const gg=svg.querySelector('.gasg');if(gg){gg.setAttribute('opacity',st.gas?1:0);gg.querySelectorAll('circle').forEach(function(ci){ci.setAttribute('fill',st.gasc||'#e2e8f0')})}
+}
+document.querySelectorAll('.lab').forEach(buildLab);
+
+/* engine */
+let slides=[...document.querySelectorAll('.slide')];
+let cur=0,step=0;
+const anim=function(el,name){el.classList.remove('animate__animated');[...el.classList].forEach(function(c){if(c.indexOf('animate__')===0)el.classList.remove(c)});void el.offsetWidth;el.classList.add('animate__animated','animate__'+(name||'fadeInUp'))};
+function stepsOf(s){return [...s.querySelectorAll('.st')].filter(function(e){return !e.parentElement.closest('.st')||e.parentElement.closest('.st')===null||true})}
+function topSteps(s){return [...s.querySelectorAll('.st')]}
+function applyLabs(s){
+ s.querySelectorAll('.lab').forEach(function(lab){
+  let n=0;const caps=[...s.querySelectorAll('.st[data-stage]')].filter(function(e){return e.classList.contains('on')});
+  caps.forEach(function(e){n=Math.max(n,+e.dataset.stage)});setLab(lab,n)});
+ s.querySelectorAll('.st[data-draw]').forEach(function(e){const p=document.getElementById(e.dataset.draw);if(p)p.classList.toggle('go',e.classList.contains('on'))});
+ s.querySelectorAll('.eflow').forEach(function(f){const r=f.closest('.rx');f.classList.toggle('go',r.classList.contains('on'))});
+ s.querySelectorAll('svg path.draw').forEach(function(p){if(p.classList.contains('go')){p.style.strokeDashoffset=0}else{p.style.strokeDashoffset=p.style.strokeDasharray||420}});
+}
+function reveal(el,fast){el.classList.add('on');if(!fast)anim(el,el.dataset.a)}
+function hideEl(el){el.classList.remove('on');[...el.classList].forEach(function(c){if(c.indexOf('animate__')===0)el.classList.remove(c)})}
+function enter(i,end){
+ slides.forEach(function(s,k){s.classList.toggle('active',k===i)});
+ cur=i;const s=slides[i];step=0;const scroller=s.querySelector('.fit');if(scroller)scroller.scrollTop=0;
+ topSteps(s).forEach(hideEl);
+ s.querySelectorAll('.lab').forEach(function(l){l._st=-1;setLab(l,0)});
+ const stp=topSteps(s);
+ if(end){stp.forEach(function(e){reveal(e,true)});step=stp.length}
+ s.querySelectorAll('.in').forEach(function(e,k){anim(e,e.dataset.a);e.style.animationDelay=(k*0.18)+'s'});
+ if(s.dataset.results){const p=Math.round(score/Q.length*100);const r=document.getElementById('ring');r.style.setProperty('--p',0);setTimeout(function(){r.style.setProperty('--p',p)},300);
+  document.getElementById('ringTxt').textContent=score+' / '+Q.length;
+  document.getElementById('resMsg').textContent=p>=90?'ممتاز، إنت جاهز للامتحان':p>=70?'جيد جدًا، راجع الأسئلة اللي غلطت فيها':p>=50?'محتاج مراجعة أكتر للعلل والمعادلات':'ارجع للشرح وحاول تاني'}
+ applyLabs(s);ui()}
+function ui(){
+ document.getElementById('cnt').textContent=(cur+1)+' / '+slides.length;
+ document.getElementById('ttl').textContent=slides[cur].dataset.title||'';
+ document.getElementById('prog').style.width=((cur+1)/slides.length*100)+'%';
+ const s=slides[cur];const total=topSteps(s).length;
+ document.getElementById('hint').style.display=(cur===0||step<total)?'block':'none';
+ document.getElementById('hint').textContent=cur===0?'اضغط للبدء':'اضغط للتالي'}
+function next(){
+ const s=slides[cur];const stp=topSteps(s);
+ if(step<stp.length){reveal(stp[step]);step++;applyLabs(s);ui();return}
+ if(cur<slides.length-1)enter(cur+1,false)}
+function prev(){
+ const s=slides[cur];const stp=topSteps(s);
+ if(step>0){step--;hideEl(stp[step]);applyLabs(s);ui();return}
+ if(cur>0)enter(cur-1,true)}
+document.addEventListener('click',function(e){
+ if(e.target.closest('.opt,.flipc,.hud,.menu,.it,button'))return;
+ const active=slides[cur];
+ if(active.classList.contains('quiz-slide'))return;
+ if(active.querySelector('.opts[data-mini]')&&e.target.closest('.body,.qt,.opts,.expl'))return;
+ if(window.getSelection&&String(window.getSelection()).trim())return;
+ next()
+});
+document.querySelectorAll('.it').forEach(function(it){it.addEventListener('click',function(ev){ev.stopPropagation();if(it.classList.contains('on'))enter(+it.dataset.go,false)})});
+document.addEventListener('keydown',function(e){
+ const k=e.key;
+ if((k==='Enter'||k===' ')&&e.target.closest('button,[role="button"],input,textarea,select,a'))return;
+ if(k==='ArrowLeft'||k===' '||k==='Enter'||k==='PageDown'||k==='ArrowDown'){e.preventDefault();next()}
+ else if(k==='ArrowRight'||k==='Backspace'||k==='PageUp'||k==='ArrowUp'){e.preventDefault();prev()}
+ else if(k==='Home')enter(0,false);else if(k==='End')enter(slides.length-1,false);
+ else if(k==='f'||k==='F')fs();else if(k==='m'||k==='M')toggleMenu();
+ else if(k==='r'||k==='R'){
+ score=0;answered=0;
+ slides.forEach(function(s){if(s.dataset.done){delete s.dataset.done;s.querySelectorAll('.opt').forEach(function(o){o.className='opt'});const x=s.querySelector('.expl');if(x)x.style.display='none';const sc=s.querySelector('[id^=sc]');if(sc)sc.textContent='النتيجة: 0'}});
+ document.querySelectorAll('[data-mini]').forEach(function(box){delete box.dataset.done;box.querySelectorAll('.opt').forEach(function(o){o.className='opt'});const ex=box.parentNode.querySelector('.expl');if(ex)ex.style.display='none'});
+ const ring=document.getElementById('ring');if(ring)ring.style.setProperty('--p',0);
+ const q=slides.findIndex(function(s){return s.dataset.quizstart});enter(q,false)
+ }
+ else if(k==='Escape')document.getElementById('menu').classList.remove('show')});
+let tx=null;
+document.addEventListener('touchstart',function(e){tx=e.touches[0].clientX},{passive:true});
+document.addEventListener('touchend',function(e){if(tx===null)return;const d=e.changedTouches[0].clientX-tx;tx=null;if(document.getElementById('menu').classList.contains('show'))return;if(Math.abs(d)>70){e.preventDefault();d>0?prev():next()}},{passive:false});
+function fs(){if(!document.fullscreenElement)document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();else document.exitFullscreen()}
+function toggleMenu(){document.getElementById('menu').classList.toggle('show')}
+document.getElementById('bM').onclick=function(e){e.stopPropagation();toggleMenu()};
+document.getElementById('bP').onclick=function(e){e.stopPropagation();prev()};
+document.getElementById('bN').onclick=function(e){e.stopPropagation();next()};
+document.getElementById('bF').onclick=function(e){e.stopPropagation();fs()};
+const mg=document.getElementById('mgrid');
+slides.forEach(function(s,i){const b=document.createElement('button');b.innerHTML='<b>'+(i+1)+'</b>'+(s.dataset.title||'');b.onclick=function(ev){ev.stopPropagation();document.getElementById('menu').classList.remove('show');enter(i,false)};mg.appendChild(b)});
+/* always-visible results + theme */
+const RES={co2:'فوران + غاز ~CO2~ عديم اللون والرائحة يعكر ماء الجير (راسب أبيض ~CaCO3~)',mg:'كربونات: راسب أبيض ~MgCO3~ على البارد | بيكربونات: لا راسب، ويظهر راسب أبيض بعد التسخين',so3:'غاز ~SO2~ نفاذ الرائحة يحول ورقة ~K2Cr2O7~ من البرتقالي إلى الأخضر',so3ag:'راسب أبيض ~Ag2SO3~ يسود بالتسخين (~Ag2S~)',s2o3:'غاز ~SO2~ يخضر الورقة + راسب أصفر من الكبريت ~S~',s2o3i:'يزول اللون البني لليود ويصبح المحلول عديم اللون',h2s:'غاز ~H2S~ كريه الرائحة يسود ورقة أسيتات الرصاص II (~PbS~ أسود)',ag2s:'راسب أسود من ~Ag2S~ على طول، ويفضل أسود بالتسخين',no:'غاز ~NO~ عديم اللون يتحول عند الفوهة إلى ~NO2~ بني محمر',kmno4:'يزول اللون البنفسجي للبرمنجنات ويصبح المحلول عديم اللون'};
+document.querySelectorAll('.slide').forEach(function(s){
+ const l=s.querySelector('.lab');
+ const t=l?RES[l.dataset.lab]:(s.querySelector('#g1')?'قصيرة: راسب أبيض ~CaCO3~ (تعكير) | طويلة: يزول التعكير لتكون ~Ca(HCO3)2~ الذائبة':null);
+ if(!t)return;const d=document.createElement('div');d.className='result';
+ d.innerHTML='<b>النتيجة</b><span>'+conv(t.replace(/~([^~]+)~/g,'<span class="f">$1</span>'))+'</span>';
+ const w=s.querySelector('.labwrap');w.parentNode.insertBefore(d,w.nextSibling)});
+function setTheme(l){document.body.classList.toggle('light',l);document.documentElement.style.background=l?'#e9eff6':'';try{localStorage.setItem('th',l?'l':'d')}catch(e){}}
+let lt=true;try{lt=localStorage.getItem('th')!=='d'}catch(e){}
+setTheme(lt);
+document.getElementById('bT').onclick=function(e){e.stopPropagation();setTheme(!document.body.classList.contains('light'))};
+
+/* auto-fit: nothing may leave the screen */
+slides.forEach(function(sl){if(sl.classList.contains('cover')||sl.dataset.results)return;
+ const w=document.createElement('div');w.className='fit';while(sl.firstChild)w.appendChild(sl.firstChild);sl.appendChild(w)});
+function fitCur(){const s=slides[cur];const f=s&&s.querySelector('.fit');if(!f)return;f.style.transform='none';
+ if(s.classList.contains('quiz-slide')||s.querySelector('.opts[data-mini]'))return;
+ const k=Math.max(.62,Math.min(1,f.clientHeight/Math.max(f.scrollHeight,1),f.clientWidth/Math.max(f.scrollWidth,1)));
+ if(k<.92)f.style.transform='scale('+k+')'}
+const _enter=enter;enter=function(i,e){_enter(i,e);fitCur()};
+document.addEventListener('click',function(){setTimeout(fitCur,60)});
+addEventListener('resize',function(){setTimeout(fitCur,60)});
+addEventListener('orientationchange',function(){setTimeout(fitCur,100)});
+if(document.fonts)document.fonts.ready.then(fitCur);
+const rt=document.createElement('div');rt.id='rot';rt.textContent='لف الموبايل أفقيًا لشكل أفضل';document.body.appendChild(rt);
+
+/* PDF export: one exact 16:9 page per slide, with all teaching steps visible. */
+const pdfButton=document.getElementById('bPDF');
+function loadPdfLibrary(src,ready){
+ if(ready())return Promise.resolve();
+ const prior=[...document.scripts].find(function(s){return s.src===src});
+ if(prior)return new Promise(function(resolve,reject){if(ready())resolve();else{prior.addEventListener('load',resolve,{once:true});prior.addEventListener('error',reject,{once:true})}});
+ return new Promise(function(resolve,reject){const s=document.createElement('script');s.src=src;s.async=true;s.onload=resolve;s.onerror=reject;document.head.appendChild(s)})
+}
+function pdfYield(){return new Promise(function(resolve){setTimeout(resolve,0)})}
+function cleanExportSlide(slide,index){
+ slide.querySelectorAll('.st').forEach(function(el){el.classList.remove('st','on')});
+ slide.querySelectorAll('[class]').forEach(function(el){
+  [...el.classList].forEach(function(c){if(c.indexOf('animate__')===0)el.classList.remove(c)});
+  el.style.removeProperty('animation-delay');el.style.removeProperty('animation-duration');
+ });
+ slide.querySelectorAll('.flipc').forEach(function(card){card.classList.remove('flipped');card.setAttribute('aria-pressed','false')});
+ // Print quiz answers and explanations in the PDF, without changing the live quiz.
+ const title=slide.dataset.title||'';
+ const qMatch=title.match(/^سؤال\s+(\d+)$/);
+ if(qMatch){
+  const qIndex=Number(qMatch[1])-1, item=Q[qIndex];
+  if(item){
+   const options=[...slide.querySelectorAll('.opt')];
+   options.forEach(function(opt,j){opt.classList.remove('right','wrong','dis');if(j===item.a)opt.classList.add('right')});
+   const exp=slide.querySelector('.expl');
+   if(exp){exp.style.display='block';exp.classList.remove('animate__animated','animate__fadeInUp');exp.innerHTML='<b class="gr">الإجابة الصحيحة: '+['أ','ب','ج','د'][item.a]+') '+fq(esc(item.o[item.a]))+'</b><br>'+fq(esc(item.e))}
+  }
+ }
+ const mini=slide.querySelector('.opts[data-mini]');
+ if(mini){
+  const right=Math.max(0,Number(mini.dataset.mini)-1),options=[...mini.querySelectorAll('.opt')];
+  options.forEach(function(opt,j){opt.classList.remove('right','wrong','dis');if(j===right)opt.classList.add('right')});
+  const exp=slide.querySelector('.expl');
+  if(exp){exp.style.display='block';exp.classList.remove('animate__animated','animate__fadeInUp');exp.innerHTML='<b class="gr">الإجابة الصحيحة: </b>'+fq(esc((options[right]||{}).textContent||''))+'<br>'+fq(esc(mini.dataset.ex||''))}
+ }
+ if(slide.dataset.results){
+  const rt=slide.querySelector('#ringTxt');if(rt)rt.textContent='—';
+  const msg=slide.querySelector('#resMsg');if(msg)msg.textContent='النتيجة تظهر بعد الانتهاء من الاختبار داخل الموقع.';
+  const ring=slide.querySelector('#ring');if(ring)ring.style.setProperty('--p',0);
+ }
+ // Remove fitting transforms left over from the currently displayed slide.
+ slide.querySelectorAll('.fit').forEach(function(f){f.style.setProperty('transform','none','important');f.style.setProperty('transform-origin','top center','important')});
+}
+function fitExportContent(slide){
+ const fit=slide.querySelector('.fit');if(!fit)return;
+ fit.style.setProperty('transform','none','important');
+ const nodes=[fit,...fit.querySelectorAll('*')];let scale=1;
+ nodes.forEach(function(el){
+  const h=el.clientHeight,w=el.clientWidth;
+  if(h>0&&el.scrollHeight>h+3)scale=Math.min(scale,h/el.scrollHeight);
+  if(w>0&&el.scrollWidth>w+3)scale=Math.min(scale,w/el.scrollWidth);
+ });
+ // Scale the whole slide's content only when it would otherwise be clipped.
+ if(scale<0.995)fit.style.setProperty('transform','scale('+Math.max(.35,scale)+')','important');
+}
+async function exportSlidesToPDF(){
+ if(pdfButton.disabled)return;
+ const oldLabel=pdfButton.textContent;
+ pdfButton.disabled=true;pdfButton.textContent='تجهيز PDF...';
+ let host=null,exportStage=null,exportCss=null;
+ try{
+  await loadPdfLibrary('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js',function(){return typeof window.html2canvas==='function'});
+  await loadPdfLibrary('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js',function(){return !!(window.jspdf&&window.jspdf.jsPDF)});
+  if(document.fonts&&document.fonts.ready)await document.fonts.ready;
+  host=document.createElement('div');host.id='pdf-export-host';
+  host.style.cssText='position:fixed!important;left:-1600px!important;top:0!important;width:1280px!important;height:720px!important;overflow:visible!important;z-index:-1000!important;pointer-events:none!important;contain:layout style;';
+  exportStage=stage.cloneNode(true);exportStage.id='pdf-export-stage';
+  exportStage.style.setProperty('position','relative','important');exportStage.style.setProperty('left','0','important');exportStage.style.setProperty('top','0','important');
+  exportStage.style.setProperty('right','auto','important');exportStage.style.setProperty('bottom','auto','important');exportStage.style.setProperty('margin','0','important');
+  exportStage.style.setProperty('width','1280px','important');exportStage.style.setProperty('height','720px','important');exportStage.style.setProperty('transform','none','important');
+  exportStage.style.setProperty('border-radius','0','important');exportStage.style.setProperty('overflow','hidden','important');
+  exportStage.querySelectorAll('.hud,.hint,.menu,.prog').forEach(function(el){el.remove()});
+  // Export flashcards as readable prompt/answer pairs instead of an animated flip.
+  exportCss=document.createElement('style');
+  exportCss.textContent=`
+   #pdf-export-host .flipc{height:auto!important;min-height:0!important;perspective:none!important;cursor:default!important;overflow:visible!important}
+   #pdf-export-host .flipc .flip-inner{position:static!important;width:100%!important;height:auto!important;display:flex!important;flex-direction:column!important;gap:7px!important;transform:none!important;transform-style:flat!important;transition:none!important}
+   #pdf-export-host .flipc .fa,#pdf-export-host .flipc .fb{position:relative!important;inset:auto!important;transform:none!important;backface-visibility:visible!important;min-height:58px!important;height:auto!important;padding:10px 12px!important;font-size:19px!important;line-height:1.4!important}
+   #pdf-export-host .flipc .fa small{display:none!important}
+   #pdf-export-host .slide{transition:none!important}
+   #pdf-export-host .blob{animation:none!important;filter:none!important}
+  `;
+  document.head.appendChild(exportCss);host.appendChild(exportStage);document.body.appendChild(host);
+  const exportSlides=[...exportStage.querySelectorAll('.slide')];
+  const {jsPDF}=window.jspdf;
+  const pdf=new jsPDF({orientation:'landscape',unit:'pt',format:[960,540],compress:true,putOnlyUsedFonts:true});
+  for(let i=0;i<exportSlides.length;i++){
+   const slide=exportSlides[i];
+   exportSlides.forEach(function(s,j){s.classList.toggle('active',i===j);s.style.setProperty('display',i===j?'flex':'none','important')});
+   cleanExportSlide(slide,i);
+   await pdfYield();
+   fitExportContent(slide);
+   await pdfYield();
+   const canvas=await window.html2canvas(exportStage,{scale:2,backgroundColor:null,useCORS:true,allowTaint:false,logging:false,width:1280,height:720,windowWidth:1280,windowHeight:720,scrollX:0,scrollY:0});
+   if(i>0)pdf.addPage([960,540],'landscape');
+   pdf.addImage(canvas.toDataURL('image/jpeg',0.93),'JPEG',0,0,960,540,undefined,'FAST');
+   canvas.width=1;canvas.height=1;
+   pdfButton.textContent='PDF '+(i+1)+'/'+exportSlides.length;
+   await pdfYield();
+  }
+  pdf.save('محاضرة-التحليل-الكيميائي.pdf');
+  pdfButton.textContent='تم تجهيز PDF';
+ }catch(err){
+  console.error('PDF export failed:',err);
+  alert('مقدرتش أجهز ملف PDF. اتأكد إن الإنترنت شغال وجرب تاني، لأن التحويل بيحمّل مكتبات PDF عند الطلب.');
+  pdfButton.textContent=oldLabel;
+ }finally{
+  if(host)host.remove();if(exportCss)exportCss.remove();
+  pdfButton.disabled=false;
+  if(pdfButton.textContent==='تم تجهيز PDF')setTimeout(function(){pdfButton.textContent=oldLabel},2200);
+ }
+}
+pdfButton.addEventListener('click',function(e){e.stopPropagation();exportSlidesToPDF()});
+
+enter(0,false);
+})();
+</script>
+</body>
+</html>
