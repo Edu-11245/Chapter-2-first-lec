@@ -480,6 +480,152 @@ body.light .mindmap-node{
 body.light .mindmap-node p{color:#17304a}
 body.light .mindmap-node p b{color:#a45308}
 body.light .mindmap-footer{background:#e9f8f6}
+
+/* =====================================================================
+   v3 VISUAL POLISH  (fills the screen, bigger type, clearer hierarchy)
+   ===================================================================== */
+.slide{padding:34px 62px 66px}
+.sh{gap:22px;margin-bottom:26px}
+.sh .n{min-width:68px;height:68px;font-size:34px;border-radius:22px}
+.sh h2{font-size:48px;line-height:1.25;letter-spacing:-.2px}
+.sh .bar{height:6px}
+.body{gap:22px;justify-content:center}
+
+/* type scale */
+.t22{font-size:29px;line-height:1.7}
+.t26{font-size:33px;line-height:1.7}
+.t30{font-size:38px;line-height:1.65}
+.big{font-size:54px;line-height:1.4}
+.f{padding:0 12px;border-radius:10px}
+.eq{font-size:37px;padding:14px 26px;border-radius:20px;line-height:1.55}
+.eq.sm{font-size:32px}
+.tag{font-size:25px;padding:0 18px}
+.lbl{font-size:24px}
+
+/* surfaces */
+.glass{padding:24px 32px;border-radius:26px}
+.card{font-size:30px;padding:22px 28px;border-radius:24px}
+.card h3{font-size:37px;margin-bottom:8px}
+.g2,.g3,.g4{gap:22px}
+.g2>.card,.g3>.card,.g4>.card{display:flex;flex-direction:column;justify-content:center}
+
+/* tables */
+.tb{font-size:31px;border-spacing:0 10px}
+.tb th{padding:14px 18px;font-size:31px}
+.tb td{padding:15px 18px;line-height:1.55}
+
+/* agenda */
+.ag{gap:20px}
+.ag .it{font-size:32px;padding:22px 24px;gap:16px;border-radius:22px;min-height:96px}
+.ag .it i{min-width:56px;height:56px;font-size:28px;border-radius:17px}
+
+/* flip cards */
+.flipc{height:260px}
+.flipc .fa,.flipc .fb{font-size:29px;line-height:1.6;padding:18px 26px;border-radius:24px}
+.flipc .fa small{font-size:20px}
+
+/* labs */
+.labwrap{gap:26px;grid-template-columns:470px 1fr}
+.labsvg{border-radius:28px;padding:10px}
+.caps{gap:12px;justify-content:center}
+.caps .c{font-size:26px;line-height:1.55;padding:10px 20px;border-radius:16px}
+.caps .eq.sm{font-size:27px;padding:8px 14px}
+.result{font-size:30px;padding:12px 26px;border-radius:20px;margin-top:14px}
+.result b{font-size:25px}
+
+/* redox */
+.rbox{font-size:29px;min-width:360px;padding:16px 22px;border-radius:22px;line-height:1.6}
+.rbox b{font-size:38px}
+.eflow i{width:30px;height:30px;font-size:18px}
+
+/* quiz */
+.qh{font-size:27px}
+.qt{font-size:42px;line-height:1.6}
+.quiz-slide .body{justify-content:center}
+.quiz-slide .opts{gap:18px}
+.quiz-slide .opt{font-size:30px;min-height:96px;padding:16px 24px;border-radius:22px}
+.quiz-slide .expl{font-size:28px;padding:16px 24px}
+.opt{font-size:30px;padding:16px 24px}
+.expl{font-size:28px;padding:16px 24px}
+.challenge-question{font-size:32px;padding:18px 28px}
+.challenge-options .opt{font-size:26px;min-height:84px}
+.challenge-lead{font-size:28px}
+.challenge-note{font-size:23px}
+
+/* review + mind map */
+.review-panel{padding:20px 24px;border-radius:26px;gap:12px}
+.review-panel h3{font-size:34px}
+.review-item{font-size:24px;padding:11px 16px;border-radius:16px}
+.review-pill{font-size:19px;padding:4px 14px}
+.review-footer{font-size:22px;padding:10px 14px}
+.mindmap-core{font-size:34px;padding:12px 36px;border-radius:22px}
+.mindmap-subtitle{font-size:23px}
+.mindmap-node{padding:16px 20px;border-radius:22px;gap:10px}
+.mindmap-node h3{font-size:30px}
+.mindmap-node p{font-size:23px;line-height:1.55}
+.mindmap-node .f{font-size:21px}
+.mindmap-footer{font-size:23px;padding:10px 14px}
+
+/* swatches (light sensitivity) */
+.swatch{display:flex;align-items:center;justify-content:center;gap:26px;margin:12px 0 14px}
+.swatch i{display:block;width:92px;height:92px;border-radius:50%;border:4px solid #cbd5e1;box-shadow:0 6px 14px rgba(15,40,70,.15)}
+.swatch b{font-size:50px;color:var(--mut)}
+
+/* cover */
+.cover .chip{font-size:30px;padding:4px 36px}
+.cover h1{font-size:128px}
+.cover .s1{font-size:40px}
+.cover .s2{font-size:30px}
+.cover .go{font-size:28px;padding:8px 44px}
+.cover::before,.cover::after{content:"";position:absolute;border-radius:50%;pointer-events:none}
+.cover::before{width:520px;height:520px;right:-160px;top:-170px;border:46px solid rgba(15,118,110,.09)}
+.cover::after{width:380px;height:380px;left:-110px;bottom:-130px;border:34px solid rgba(79,70,229,.08)}
+
+/* HUD */
+.hud{height:50px;font-size:18px}
+.hud button{font-size:17px;padding:6px 16px;border-radius:14px;font-weight:700}
+.prog{height:6px;border-radius:0 0 6px 6px}
+.hint{font-size:19px}
+
+/* ---------- light theme: richer surfaces ---------- */
+body.light .stage{background:
+  radial-gradient(760px 420px at 100% 0%,rgba(15,118,110,.13),transparent 62%),
+  radial-gradient(640px 380px at 0% 100%,rgba(79,70,229,.10),transparent 62%),
+  radial-gradient(rgba(15,40,70,.045) 1.3px,transparent 1.4px) 0 0/30px 30px,
+  #f7fbff}
+body.light .sh h2{color:#0b2540}
+body.light .sh .n{box-shadow:0 8px 18px rgba(15,118,110,.32)}
+body.light .sh .bar{height:6px;border-radius:6px;opacity:.9}
+body.light .glass{background:linear-gradient(135deg,#ffffff,#f1f8ff);border:1px solid #d3e0ee;border-right:8px solid var(--ac);box-shadow:0 10px 26px rgba(15,40,70,.09)}
+body.light .card{background:linear-gradient(160deg,#ffffff,#f6faff);box-shadow:0 10px 26px rgba(15,40,70,.09);border-top-width:7px}
+body.light .eq{background:linear-gradient(135deg,rgba(13,148,136,.10),rgba(79,70,229,.06));border-width:2.5px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.6)}
+body.light .tb td{background:#fff;box-shadow:0 3px 10px rgba(15,40,70,.06)}
+body.light .tb th{background:linear-gradient(135deg,#0f766e,#0e5f87)}
+body.light .tb td:first-child{background:#f1f8ff}
+body.light .ag .it{background:linear-gradient(135deg,#fff,#f1f8ff);box-shadow:0 8px 20px rgba(15,40,70,.08)}
+body.light .opt{background:linear-gradient(135deg,#fff,#f6faff);box-shadow:0 5px 14px rgba(15,40,70,.07)}
+body.light .caps .c{background:linear-gradient(135deg,#fff,#f4f9ff);border-right-width:8px;box-shadow:0 5px 14px rgba(15,40,70,.07)}
+body.light .labsvg{background:linear-gradient(160deg,#0f2740,#123a5c);box-shadow:0 14px 30px rgba(15,40,70,.25)}
+body.light .result{background:linear-gradient(135deg,#ecfdf5,#f0fdfa);box-shadow:0 8px 20px rgba(21,128,61,.12)}
+body.light .rbox{background:linear-gradient(135deg,#fff,#f4f9ff);box-shadow:0 8px 20px rgba(15,40,70,.09)}
+body.light .review-panel,body.light .mindmap-node{box-shadow:0 10px 24px rgba(15,40,70,.09)}
+body.light .hud{background:linear-gradient(transparent,#f7fbff 55%)}
+body.light .hud button{box-shadow:0 3px 8px rgba(15,40,70,.08)}
+body.light .swatch i{border-color:#dbe5f0}
+body.light .quiz-slide .qt,body.light .qt{color:#0b2540}
+
+/* ===== flip-card overflow fix ===== */
+.flipc{height:310px}
+.flipc .fa,.flipc .fb{display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:27px;line-height:1.55;padding:16px 22px;overflow:hidden}
+.flipc .fc{display:block;width:100%;text-align:center}
+.flipc .fa small{font-size:19px;margin-top:8px}
+.flipc .fa>*,.flipc .fb>*{max-width:100%}
+.flipc .fa .f,.flipc .fb .f{font-size:.9em}
+.g2>.flipc,.g3>.flipc{min-width:0}
+
+/* auto-fit never shrinks below readable size */
+.fit{transform-origin:top center}
+
 </style>
 <link rel="stylesheet" href="animate.min.css">
 </head>
@@ -605,7 +751,7 @@ body.light .mindmap-footer{background:#e9f8f6}
 <section class="slide" data-title="علل النيتريت" style="--ac:var(--violet)">
  <div class="sh"><div class="n">٤</div><h2>علل</h2><div class="bar"></div></div>
  <div class="body">
-<div class="g3" style="flex:1;align-content:start;gap:14px"><div class="flipc st" role="button" tabindex="0" aria-pressed="false" data-a="zoomIn"><div class="flip-inner"><div class="fa">علل: يتحول لون NO للبني المحمر عند فوهة الأنبوبة<small>اضغط</small></div><div class="fb">لأنه يتأكسد بأكسجين الهواء ويتكون ثاني أكسيد النيتروجين NO2 البني المحمر</div></div></div><div class="flipc st" role="button" tabindex="0" aria-pressed="false" data-a="zoomIn"><div class="flip-inner"><div class="fa">علل: يصلح HCl للنيتريت ولا يصلح للنترات<small>اضغط</small></div><div class="fb">لأن HCl أكثر ثباتًا من حمض النيتروز وأقل ثباتًا من حمض النيتريك</div></div></div><div class="flipc st" role="button" tabindex="0" aria-pressed="false" data-a="zoomIn"><div class="flip-inner"><div class="fa">علل: لا يتفاعل HCl مع كبريتات الصوديوم<small>اضغط</small></div><div class="fb">لأن حمض HCl أقل ثباتًا من حمض الكبريتيك</div></div></div></div>
+<div class="g3" style="flex:1;align-content:start;gap:14px"><div class="flipc st" role="button" tabindex="0" aria-pressed="false" data-a="zoomIn"><div class="flip-inner"><div class="fa"><div class="fc">علل: يتحول لون NO للبني المحمر عند فوهة الأنبوبة</div><small>اضغط</small></div><div class="fb"><div class="fc">لأنه يتأكسد بأكسجين الهواء ويتكون ثاني أكسيد النيتروجين NO2 البني المحمر</div></div></div></div><div class="flipc st" role="button" tabindex="0" aria-pressed="false" data-a="zoomIn"><div class="flip-inner"><div class="fa"><div class="fc">علل: يصلح HCl للنيتريت ولا يصلح للنترات</div><small>اضغط</small></div><div class="fb"><div class="fc">لأن HCl أكثر ثباتًا من حمض النيتروز وأقل ثباتًا من حمض النيتريك</div></div></div></div><div class="flipc st" role="button" tabindex="0" aria-pressed="false" data-a="zoomIn"><div class="flip-inner"><div class="fa"><div class="fc">علل: لا يتفاعل HCl مع كبريتات الصوديوم</div><small>اضغط</small></div><div class="fb"><div class="fc">لأن حمض HCl أقل ثباتًا من حمض الكبريتيك</div></div></div></div></div>
  </div>
 </section>
 
@@ -1109,7 +1255,8 @@ function ui(){
  document.getElementById('prog').style.width=((cur+1)/slides.length*100)+'%';
  const s=slides[cur];const total=topSteps(s).length;
  document.getElementById('hint').style.display=(cur===0||step<total)?'block':'none';
- document.getElementById('hint').textContent=cur===0?'اضغط للبدء':'اضغط للتالي'}
+ document.getElementById('hint').textContent=cur===0?'اضغط للبدء':'اضغط للتالي';
+ setTimeout(function(){try{fitCur();fitFlips()}catch(e){}},40)}
 function next(){
  const s=slides[cur];const stp=topSteps(s);
  if(step<stp.length){reveal(stp[step]);step++;applyLabs(s);ui();return}
@@ -1178,6 +1325,17 @@ document.addEventListener('click',function(){setTimeout(fitCur,60)});
 addEventListener('resize',function(){setTimeout(fitCur,60)});
 addEventListener('orientationchange',function(){setTimeout(fitCur,100)});
 if(document.fonts)document.fonts.ready.then(fitCur);
+/* shrink flip-card text until it fits (both faces) */
+function fitFlips(){
+ const s=slides[cur];if(!s)return;
+ s.querySelectorAll('.flipc').forEach(function(c){
+  c.querySelectorAll('.fa,.fb').forEach(function(face){
+   face.style.fontSize='';let fs=parseFloat(getComputedStyle(face).fontSize)||27;
+   let guard=0;while(face.scrollHeight>face.clientHeight+1&&fs>15&&guard++<30){fs-=1;face.style.fontSize=fs+'px'}
+  })})}
+const _enter2=enter;enter=function(i,e){_enter2(i,e);fitFlips();setTimeout(fitFlips,120)};
+document.addEventListener('click',function(){setTimeout(fitFlips,80)});
+if(document.fonts)document.fonts.ready.then(fitFlips);
 const rt=document.createElement('div');rt.id='rot';rt.textContent='لف الموبايل أفقيًا لشكل أفضل';document.body.appendChild(rt);
 
 /* PDF export: one exact 16:9 page per slide, with all teaching steps visible. */

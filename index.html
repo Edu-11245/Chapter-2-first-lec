@@ -29,6 +29,45 @@ h1{font-size:clamp(34px,7vw,72px);font-weight:900;line-height:1.3;margin-top:12p
 .soon .num{background:rgba(255,255,255,.2);color:var(--ink)}
 .soon .go{background:rgba(255,255,255,.18);color:var(--ink)}
 @media (prefers-reduced-motion:reduce){.card{transition:none}}
+
+/* summary tables */
+.sums{margin-top:clamp(28px,5vw,52px);display:flex;flex-direction:column;gap:22px}
+.sum{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-top:6px solid var(--ac);border-radius:22px;padding:18px clamp(12px,2.5vw,24px) 22px}
+.sum-h{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.sum-h h3{font-size:clamp(20px,3vw,27px);font-weight:900}
+.sum-h h3 small{display:block;font-size:14px;font-weight:600;color:var(--mut)}
+.pbtn{font:inherit;font-weight:800;font-size:16px;background:var(--ac);color:#06202a;border:0;border-radius:30px;padding:5px 22px;cursor:pointer}
+.pbtn:focus-visible{outline:3px solid #fff}
+.tw{overflow-x:auto;border-radius:14px}
+table.st2{width:100%;border-collapse:collapse;min-width:640px;font-size:clamp(13px,1.6vw,16px);line-height:1.65}
+.st2 th,.st2 td{border:1px solid rgba(255,255,255,.2);padding:6px 10px;text-align:center;vertical-align:middle}
+.st2 thead th{background:var(--ac);color:#06202a;font-weight:900}
+.st2 tbody th{background:rgba(255,255,255,.1);font-weight:800;white-space:nowrap}
+.st2 tbody tr:nth-child(even) td{background:rgba(255,255,255,.04)}
+.st2 caption{caption-side:top;text-align:right;font-weight:800;color:var(--ac);padding:8px 2px 6px;font-size:1.05em}
+.st2 .e{direction:ltr;unicode-bidi:isolate;display:inline-block}
+.tip{margin-top:12px;font-size:clamp(13px,1.6vw,16px);color:var(--mut);line-height:1.8}
+.tip b{color:var(--ac)}
+@media print{
+ @page{size:A4 landscape;margin:10mm}
+ body{background:#fff!important;color:#000!important;padding:0!important;min-height:0}
+ header,.grid,.pbtn,.sum-h small,.noprint{display:none!important}
+ .wrap{max-width:none}
+ .sums{margin:0;gap:0}
+ .sum{display:none;background:#fff;border:0;border-radius:0;padding:0;box-shadow:none}
+ body.p1 #s1,body.p2 #s2,body.p3 #s3{display:block}
+ body.pall .sum{display:block;break-after:page}
+ .sum-h h3{color:#000;font-size:20px;margin-bottom:6px}
+ .st2{min-width:0;font-size:9.5pt;line-height:1.3}
+ .st2 th,.st2 td{border:1px solid #333;color:#000;padding:3px 5px}
+ .st2 thead th{background:#d9d9d9!important;color:#000;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .st2 tbody th{background:#efefef!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .st2 tbody tr:nth-child(even) td{background:#fff!important}
+ .st2 caption{color:#000}
+ .tip{color:#000;font-size:9pt;line-height:1.45;margin-top:4px}.tip b{color:#000}
+ #s3{zoom:.82}
+ .st2 tr{break-inside:avoid}
+}
 </style>
 </head>
 <body>
@@ -53,13 +92,57 @@ h1{font-size:clamp(34px,7vw,72px);font-weight:900;line-height:1.3;margin-top:12p
    <div class="tags"><span>الكبريتيد</span><span>النيتريت</span><span>ملخص المجموعة</span><span>اختبار</span></div>
    <span class="go">ابدأ المحاضرة</span>
   </a>
-  <div class="card soon" style="--ac:var(--violet)" aria-disabled="true">
+  <a class="card" href="lecture3.html" style="--ac:var(--violet)">
    <div class="num">٣</div>
    <h2>المحاضرة الثالثة</h2>
-   <p>مجموعة أنيونات حمض الكبريتيك المركز ومجموعة كلوريد الباريوم.</p>
-   <span class="go">قريبًا</span>
-  </div>
+   <p>مجموعة أنيونات حمض الكبريتيك المركز (الكلوريد والبروميد واليوديد والنيترات) ومجموعة كلوريد الباريوم (الكبريتات والفوسفات) مع اختبار.</p>
+   <div class="tags"><span>الهاليدات</span><span>النيترات</span><span>الحلقة البنية</span><span>الكبريتات</span><span>الفوسفات</span></div>
+   <span class="go">ابدأ المحاضرة</span>
+  </a>
  </main>
+
+ <div class="sums" aria-label="جداول الملخصات">
+  <div class="sum-h noprint" style="justify-content:center;gap:16px"><h3 style="text-align:center">ملخص الملخص: جداول جاهزة للطباعة</h3><button class="pbtn" style="--ac:var(--teal)" type="button" onclick="pr('pall')">اطبع الثلاثة</button></div>
+  <section class="sum" id="s1" style="--ac:var(--teal)">
+   <div class="sum-h"><h3>ملخص المحاضرة الأولى<small>الكربونات والبيكربونات والكبريتيت والثيوكبريتات</small></h3>
+   <button class="pbtn noprint" type="button" onclick="pr('p1')">اطبع الملخص</button></div>
+   <div class="tw"><table class="st2"><caption>أنيونات حمض HCl المخفف (الجزء الأول)</caption><thead><tr><th scope="col">الأنيون</th><th scope="col">التجربة الأساسية (ملح صلب + الكاشف)</th><th scope="col">الغاز / الملاحظة</th><th scope="col">التجربة التأكيدية (محلول الملح + كاشف)</th><th scope="col">النتيجة</th></tr></thead><tbody><tr><th scope="row">الكربونات <span class="e">CO<sub>3</sub><sup>2-</sup></span></th><td>HCl المخفف</td><td>غاز <span class="e">CO<sub>2</sub></span> عديم اللون والرائحة يعكّر ماء الجير</td><td>محلول <span class="e">MgSO<sub>4</sub></span></td><td>راسب أبيض في الحال</td></tr><tr><th scope="row">البيكربونات <span class="e">HCO<sub>3</sub><sup>-</sup></span></th><td>HCl المخفف</td><td>غاز <span class="e">CO<sub>2</sub></span> يعكّر ماء الجير</td><td>محلول <span class="e">MgSO<sub>4</sub></span></td><td>لا راسب على البارد، ويظهر راسب أبيض بالتسخين</td></tr><tr><th scope="row">الكبريتيت <span class="e">SO<sub>3</sub><sup>2-</sup></span></th><td>HCl المخفف</td><td>غاز <span class="e">SO<sub>2</sub></span> نفّاذ الرائحة، يخضّر ورقة <span class="e">K<sub>2</sub>Cr<sub>2</sub>O<sub>7</sub></span> المحمضة، ويزيل لون البرمنجنات</td><td>محلول <span class="e">AgNO<sub>3</sub></span></td><td>راسب أبيض يسوَد بالتسخين</td></tr><tr><th scope="row">الثيوكبريتات <span class="e">S<sub>2</sub>O<sub>3</sub><sup>2-</sup></span></th><td>HCl المخفف</td><td>غاز <span class="e">SO<sub>2</sub></span> + راسب أصفر من الكبريت (عكارة)</td><td>محلول اليود (بني)</td><td>يزول لون اليود</td></tr></tbody></table></div>
+<div class="tip"><b>أنواع التحليل:</b> التحليل الكيفي (الكشف عن مكونات المادة) والتحليل الكمي (تعيين نسبة كل مكوّن).<br>
+<b>القاعدة:</b> HCl المخفف أكثر ثباتًا من الأحماض الضعيفة (الكربونيك والكبريتوز والثيوكبريتيك) فيطردها من أملاحها على هيئة غازات.<br>
+<b>عدّ الأنيونات:</b> مجموعة HCl المخفف ستة أنيونات: الكربونات والبيكربونات والكبريتيت والثيوكبريتات والكبريتيد والنيتريت.</div>
+  </section>
+  <section class="sum" id="s2" style="--ac:var(--amber)">
+   <div class="sum-h"><h3>ملخص المحاضرة الثانية<small>الكبريتيد والنيتريت والأكسدة والاختزال</small></h3>
+   <button class="pbtn noprint" type="button" onclick="pr('p2')">اطبع الملخص</button></div>
+   <div class="tw"><table class="st2"><caption>أنيونات حمض HCl المخفف (الجزء الثاني) + الأكسدة والاختزال</caption><thead><tr><th scope="col">الأنيون</th><th scope="col">التجربة الأساسية (ملح صلب + الكاشف)</th><th scope="col">الغاز / الملاحظة</th><th scope="col">التجربة التأكيدية (محلول الملح + كاشف)</th><th scope="col">النتيجة</th></tr></thead><tbody><tr><th scope="row">الكبريتيد <span class="e">S<sup>2-</sup></span></th><td>HCl المخفف</td><td>غاز <span class="e">H<sub>2</sub>S</span> كريه الرائحة (بيض فاسد) يسوّد ورقة <span class="e">(CH<sub>3</sub>COO)<sub>2</sub>Pb</span>، ولا يتكوّن ماء</td><td>محلول <span class="e">AgNO<sub>3</sub></span></td><td>راسب أسود في الحال</td></tr><tr><th scope="row">النيتريت <span class="e">NO<sub>2</sub><sup>-</sup></span></th><td>HCl المخفف</td><td>يتكوّن <span class="e">HNO<sub>2</sub></span> غير ثابت وينحل إلى <span class="e">HNO<sub>3</sub> + NO + H<sub>2</sub>O</span>، والغاز <span class="e">NO</span> عديم اللون يتحول إلى بني محمر (<span class="e">NO<sub>2</sub></span>) عند فوهة الأنبوبة</td><td>محلول <span class="e">KMnO<sub>4</sub></span> المحمضة</td><td>يزول اللون البنفسجي</td></tr></tbody></table></div>
+<div class="tw" style="margin-top:14px"><table class="st2"><caption>الفرق الحاسم: الكبريتيد والكبريتيت</caption><thead><tr><th>الأنيون</th><th>الغاز</th><th>التأكيدية مع AgNO3</th></tr></thead><tbody>
+<tr><th scope="row">الكبريتيد</th><td><span class="e">H<sub>2</sub>S</span> (بيض فاسد)</td><td>راسب أسود مباشرة</td></tr>
+<tr><th scope="row">الكبريتيت</th><td><span class="e">SO<sub>2</sub></span> (نفّاذ)</td><td>راسب أبيض يسوَد بعد التسخين</td></tr></tbody></table></div>
+<div class="tip"><b>بدائل الكواشف:</b> بدل <span class="e">AgNO<sub>3</sub></span> يُستخدم <span class="e">AgHCO<sub>3</sub></span>، وبدل أسيتات الرصاص II يُستخدم نيترات أو بيكربونات الرصاص.<br>
+<b>الغازات القابلة للأكسدة (تزيل لون البرمنجنات):</b> <span class="e">SO<sub>2</sub></span> و <span class="e">NO</span> و <span class="e">HBr</span> و <span class="e">HI</span> (وكذلك Fe<sup>2+</sup> وأيونات العناصر الانتقالية القابلة للأكسدة).<br>
+<b>غير القابلة للأكسدة:</b> <span class="e">CO<sub>2</sub></span> و <span class="e">NO<sub>2</sub></span> و <span class="e">SO<sub>3</sub></span>.<br>
+<b>الغاز الناتج أقل بذرة أكسجين</b> عن الشق الحامضي، ما عدا الكبريتيد.<br>
+<b>التخلص من الغازات الحمضية</b> (<span class="e">H<sub>2</sub>S</span> و <span class="e">CO<sub>2</sub></span> و <span class="e">SO<sub>2</sub></span>): بتمريرها على محلول قاعدي.<br>
+<b>كبريتات الصوديوم لا تتفاعل مع HCl</b> لأن حمض الكبريتيك أكثر ثباتًا.</div>
+  </section>
+  <section class="sum" id="s3" style="--ac:var(--violet)">
+   <div class="sum-h"><h3>ملخص المحاضرة الثالثة<small>مجموعة H2SO4 المركز ومجموعة BaCl2</small></h3>
+   <button class="pbtn noprint" type="button" onclick="pr('p3')">اطبع الملخص</button></div>
+   <div class="tw"><table class="st2"><caption>مجموعة H2SO4 المركز (4 أنيونات)</caption><thead><tr><th scope="col">الأنيون</th><th scope="col">التجربة الأساسية (ملح صلب + H2SO4 المركز + تسخين)</th><th scope="col">الغاز / الملاحظة</th><th scope="col">التجربة التأكيدية</th><th scope="col">النتيجة</th></tr></thead><tbody><tr><th scope="row">الكلوريد <span class="e">Cl<sup>-</sup></span></th><td>H2SO4 المركز</td><td>غاز <span class="e">HCl</span>، وبتقريب ساق مبللة بالنشادر تتكوّن أبخرة بيضاء من <span class="e">NH<sub>4</sub>Cl</span></td><td>محلول <span class="e">AgNO<sub>3</sub></span></td><td>راسب أبيض يذوب في النشادر ويصير بنفسجيًا بالضوء</td></tr><tr><th scope="row">البروميد <span class="e">Br<sup>-</sup></span></th><td>H2SO4 المركز</td><td>أبخرة <span class="e">Br<sub>2</sub></span> بنية محمرة + <span class="e">SO<sub>2</sub></span> (يتأكسد البروميد)</td><td>محلول <span class="e">AgNO<sub>3</sub></span></td><td>راسب أبيض مصفر يذوب جزئيًا في النشادر ويغمق بالضوء</td></tr><tr><th scope="row">اليوديد <span class="e">I<sup>-</sup></span></th><td>H2SO4 المركز</td><td>أبخرة <span class="e">I<sub>2</sub></span> بنفسجية + <span class="e">SO<sub>2</sub></span> (يتأكسد اليوديد، وتصفرّ ورقة النشا)</td><td>محلول <span class="e">AgNO<sub>3</sub></span></td><td>راسب أصفر لا يذوب في النشادر</td></tr><tr><th scope="row">النيترات <span class="e">NO<sub>3</sub><sup>-</sup></span></th><td>H2SO4 المركز (+ خراطة نحاس)</td><td>أبخرة <span class="e">NO<sub>2</sub></span> بنية محمرة تزداد كثافتها بإضافة النحاس</td><td>محلول <span class="e">FeSO<sub>4</sub></span> حديث التحضير + قطرات H2SO4 المركز على جدار الأنبوبة</td><td>حلقة بنية (مركب الحلقة البنية)</td></tr></tbody></table></div>
+<div class="tw"><table class="st2"><caption>مجموعة BaCl2 (أنيونان من الأحماض عالية الثبات)</caption><thead><tr><th scope="col">الأنيون</th><th scope="col">التجربة الأساسية (محلول الملح + BaCl2)</th><th scope="col">التمييز بحمض HCl المخفف</th><th scope="col">التجربة التأكيدية</th><th scope="col">النتيجة</th></tr></thead><tbody><tr><th scope="row">الكبريتات <span class="e">SO<sub>4</sub><sup>2-</sup></span></th><td>راسب أبيض من <span class="e">BaSO<sub>4</sub></span></td><td>لا يذوب</td><td>محلول أسيتات الرصاص II</td><td>راسب أبيض</td></tr><tr><th scope="row">الفوسفات <span class="e">PO<sub>4</sub><sup>3-</sup></span></th><td>راسب أبيض من <span class="e">Ba<sub>3</sub>(PO<sub>4</sub>)<sub>2</sub></span></td><td>يذوب</td><td>محلول <span class="e">AgNO<sub>3</sub></span></td><td>راسب أصفر يذوب في النشادر</td></tr></tbody></table></div>
+<div class="tip"><b>القاعدة:</b> H2SO4 المركز أكثر ثباتًا من أحماض الكلوريد والبروميد واليوديد والنيتريك (متوسطة الثبات)، فيطردها على هيئة غازات عند التسخين. وهو يصلح للكشف عن <b>4 + 6 = 10</b> أنيونات (4 من مجموعته + 6 من مجموعة HCl المخفف).<br>
+<b>الكلوريد لا يتأكسد</b> بالحمض لصغر نصف قطره، أما البروميد واليوديد فيتأكسدان.<br>
+<b>راسب AgNO3:</b> كبريتيد أسود | كبريتيت أبيض يسوَد بالتسخين | كلوريد أبيض | بروميد أبيض مصفر | يوديد أصفر | فوسفات أصفر.<br>
+<b>الذوبان في النشادر:</b> يذوب AgCl وAg3PO4 وAgBr (جزئيًا)، ولا يذوب AgI.<br>
+<b>التمييز بين ملحين:</b> من نفس المجموعة نستخدم كاشف المجموعة؛ ومن مجموعتين مختلفتين نفضّل كاشف المجموعة الأسبق؛ والكربونات من البيكربونات بـ MgSO4. وتمييز النيترات من النيتريت بالبرمنجنات (تُزال مع النيتريت فقط).<br>
+<b>أنيونات تمنع ظهور الحلقة البنية:</b> البرمنجنات <span class="e">MnO<sub>4</sub><sup>-</sup></span> (لأنه يؤكسد Fe<sup>2+</sup>)، بينما الكلوريد والفوسفات والكربونات لا تمنعها.<br>
+<b>تسخين الحلقة البنية بشدة:</b> راسب أحمر <span class="e">Fe<sub>2</sub>O<sub>3</sub></span> + غازات <span class="e">SO<sub>2</sub></span> و <span class="e">SO<sub>3</sub></span> و <span class="e">NO<sub>2</sub></span>.</div>
+  </section>
+ </div>
+<script>
+function pr(c){document.body.className=c;window.print()}
+window.addEventListener('afterprint',function(){document.body.className=''});
+</script>
 </div>
 </body>
 </html>
